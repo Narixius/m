@@ -6,7 +6,7 @@ import { ChevronRight, PartyPopper } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col items-center justify-center mt-28 mb-8">
+    <div className="flex flex-col items-center justify-center mt-20 mb-8">
       <div className="mb-10">
         <a
           href="#"
