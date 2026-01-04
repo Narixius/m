@@ -1,0 +1,627 @@
+---
+import { BorderedLayout } from '@/layouts/BorderedLayout';
+import Layout from '@/layouts/Layout.astro';
+import { Seo } from 'astro-seo-meta';
+import { Navbar } from '@/components/Navbar'
+import { Logo } from '@/components/Logo'
+import { Button } from '@/components/ui/button'
+import { Hero } from '@/components/Hero'
+import { DownloadIcon } from 'lucide-react'
+---
+
+<Layout>
+  <Seo title="Marz | Premium VPN Interface" />
+  <BorderedLayout>
+    <div class="px-6 pt-5 pb-10">
+      <div class="flex gap-2">
+        <Logo />
+        <Navbar />
+        <Button>
+          Get Started
+        </Button>
+      </div>
+      <Hero client:load />
+    </div>
+    <section
+        id="company"
+        class="flex flex-col items-center justify-center gap-10 w-full relatives"
+      >
+        <div class="grid w-full grid-cols-2 md:grid-cols-3 overflow-hidden border-y border-border items-center justify-center z-20">
+          <a
+            class="group w-full h-28 flex items-center justify-center relative p-4"
+            href="#"
+          >
+            <div class="transition-all duration-200 [cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-0 group-hover:-translate-y-4 duration-300 flex items-center justify-center w-full h-full">
+              <svg
+                width="110"
+                height="31"
+                viewBox="0 0 110 31"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="dark:fill-white fill-black"
+              >
+                <path d="M34.5469 14.5155C34.5469 19.4338 37.7054 22.8631 42.0822 22.8631C46.4591 22.8631 49.6176 19.4338 49.6176 14.5155C49.6176 9.59721 46.4591 6.16797 42.0822 6.16797C37.7054 6.16797 34.5469 9.59721 34.5469 14.5155ZM46.7298 14.5155C46.7298 18.035 44.8121 20.3137 42.0822 20.3137C39.3524 20.3137 37.4347 18.035 37.4347 14.5155C37.4347 10.996 39.3524 8.71736 42.0822 8.71736C44.8121 8.71736 46.7298 10.996 46.7298 14.5155Z"></path>
+                <path d="M57.7468 22.8652C61.0633 22.8652 62.9584 20.0676 62.9584 16.706C62.9584 13.3444 61.0633 10.5469 57.7468 10.5469C56.2127 10.5469 55.0846 11.156 54.3401 12.0359V10.7725H51.6328V26.678H54.3401V21.3761C55.0846 22.256 56.2127 22.8652 57.7468 22.8652ZM54.2724 16.3676C54.2724 14.1341 55.5359 12.9158 57.2054 12.9158C59.1682 12.9158 60.2285 14.4499 60.2285 16.706C60.2285 18.9621 59.1682 20.4963 57.2054 20.4963C55.5359 20.4963 54.2724 19.2554 54.2724 17.067V16.3676Z"></path>
+                <path d="M70.2843 22.8652C72.6532 22.8652 74.5258 21.6243 75.3605 19.5487L73.0367 18.6688C72.6758 19.8871 71.6154 20.5639 70.2843 20.5639C68.5471 20.5639 67.3288 19.3231 67.1258 17.2926H75.4282V16.3902C75.4282 13.1414 73.6008 10.5469 70.1715 10.5469C66.7422 10.5469 64.5312 13.2316 64.5312 16.706C64.5312 20.3609 66.9002 22.8652 70.2843 22.8652ZM70.1489 12.8255C71.8636 12.8255 72.6758 13.9536 72.6983 15.2621H67.2611C67.6672 13.6603 68.7501 12.8255 70.1489 12.8255Z"></path>
+                <path d="M77.4609 22.617H80.1683V15.6682C80.1683 13.9761 81.4091 13.0737 82.6274 13.0737C84.1164 13.0737 84.703 14.1341 84.703 15.6005V22.617H87.4103V14.8109C87.4103 12.2615 85.9213 10.5469 83.4396 10.5469C81.9054 10.5469 80.8451 11.2463 80.1683 12.0359V10.7725H77.4609V22.617Z"></path>
+                <path d="M95.3397 6.41797L89.2031 22.6167H92.0684L93.4446 18.9167H100.438L101.837 22.6167H104.748L98.611 6.41797H95.3397ZM96.919 9.62163L99.4909 16.3899H94.3921L96.919 9.62163Z"></path>
+                <path d="M109.396 6.46484H106.508V22.6636H109.396V6.46484Z"></path>
+                <path d="M27.9278 12.3665C28.6102 10.3182 28.3752 8.07433 27.2838 6.21115C25.6425 3.35343 22.343 1.88321 19.1205 2.57508C17.687 0.960086 15.6273 0.0416664 13.4681 0.054827C10.1742 0.0473067 7.25158 2.16804 6.2382 5.30213C4.12219 5.73551 2.29568 7.06002 1.22685 8.93727C-0.426682 11.7875 -0.0497272 15.3803 2.15937 17.8244C1.4769 19.8728 1.71191 22.1166 2.8033 23.9798C4.4446 26.8375 7.74416 28.3078 10.9666 27.6159C12.3992 29.2309 14.4598 30.1494 16.6191 30.1352C19.9149 30.1437 22.8384 28.021 23.8518 24.8841C25.9678 24.4508 27.7943 23.1263 28.8631 21.249C30.5148 18.3988 30.137 14.8088 27.9287 12.3646L27.9278 12.3665ZM16.621 28.1696C15.3021 28.1714 14.0246 27.7099 13.0121 26.8648C13.0582 26.8403 13.1381 26.7962 13.1898 26.7642L19.1797 23.3049C19.4862 23.131 19.6742 22.8048 19.6723 22.4522V14.0078L22.2038 15.4696C22.2311 15.4828 22.249 15.5091 22.2527 15.5392V22.5321C22.249 25.6418 19.7306 28.163 16.621 28.1696ZM4.50945 22.9965C3.84863 21.8553 3.61081 20.5176 3.83735 19.2194C3.88154 19.2457 3.95954 19.2937 4.01501 19.3257L10.0049 22.785C10.3086 22.9627 10.6846 22.9627 10.9892 22.785L18.3018 18.5624V21.4859C18.3036 21.5159 18.2895 21.5451 18.266 21.5639L12.2112 25.0599C9.51423 26.6129 6.06995 25.6897 4.51042 22.9965H4.50945ZM2.93302 9.9215C3.59104 8.77841 4.62981 7.90416 5.8669 7.45014C5.8669 7.50182 5.86408 7.59303 5.86408 7.65695V14.5766C5.86218 14.9281 6.05019 15.2543 6.35572 15.4282L13.6683 19.65L11.1368 21.1117C11.1114 21.1287 11.0794 21.1315 11.0512 21.1193L4.99548 17.6204C2.30413 16.0618 1.38101 12.6185 2.93208 9.92243L2.93302 9.9215ZM23.7324 14.7618L16.4198 10.5391L18.9513 9.07829C18.9767 9.06136 19.0087 9.05853 19.0369 9.07077L25.0926 12.5668C27.7887 14.1244 28.7127 17.5734 27.155 20.2695C26.4961 21.4107 25.4583 22.2849 24.2221 22.7399V15.6134C24.2249 15.2619 24.0379 14.9366 23.7333 14.7618H23.7324ZM26.2517 10.9697C26.2075 10.9424 26.1295 10.8954 26.074 10.8634L20.0841 7.40406C19.7804 7.2264 19.4044 7.2264 19.0998 7.40406L11.7873 11.6267V8.70321C11.7854 8.67313 11.7995 8.64398 11.823 8.62518L17.8778 5.13199C20.5748 3.57621 24.0228 4.50217 25.5777 7.20008C26.2347 8.33941 26.4726 9.67333 26.2498 10.9697H26.2517ZM10.411 16.1803L7.87856 14.7185C7.85131 14.7054 7.83347 14.679 7.82971 14.649V7.65599C7.83157 4.54257 10.3575 2.01951 13.4709 2.02139C14.7879 2.02139 16.0626 2.48389 17.075 3.32618C17.0289 3.3506 16.95 3.39479 16.8973 3.42677L10.9074 6.88612C10.6009 7.06002 10.4129 7.38526 10.4148 7.73778L10.411 16.1784V16.1803ZM11.7863 13.2154L15.0436 11.3344L18.3008 13.2145V16.9756L15.0436 18.8556L11.7863 16.9756V13.2154Z"></path>
+              </svg>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-4 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+              <span class="flex items-center gap-2 text-sm font-medium">
+                Learn More{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right w-4 h-4"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+          <a
+            class="group w-full h-28 flex items-center justify-center relative p-4 border-l"
+            href="#"
+          >
+            <div class="transition-all duration-200 [cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-0 group-hover:-translate-y-4 duration-300 flex items-center justify-center w-full h-full">
+              <svg
+                width="113"
+                height="25"
+                viewBox="0 0 113 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="dark:fill-white fill-black"
+              >
+                <path d="M0.75 2.69908C0.75 1.48458 1.73458 0.5 2.94908 0.5H11.551C12.7655 0.5 13.75 1.48458 13.75 2.69908V4.4005C13.75 5.00775 13.2577 5.50004 12.6505 5.50004H1.84954C1.24229 5.50004 0.75 5.00775 0.75 4.4005V2.69908Z"></path>
+                <path d="M0.75 9.59954C0.75 8.99224 1.24229 8.5 1.84954 8.5H22.551C23.7655 8.5 24.7501 9.48453 24.7501 10.6991V16.4005C24.7501 17.0077 24.2578 17.5 23.6506 17.5H2.94908C1.73458 17.5 0.75 16.5154 0.75 15.3009V9.59954Z"></path>
+                <path d="M11.75 21.5995C11.75 20.9923 12.2423 20.5 12.8495 20.5H23.6505C24.2577 20.5 24.75 20.9923 24.75 21.5995V22.3009C24.75 23.5154 23.7654 24.5 22.5509 24.5H13.9491C12.7346 24.5 11.75 23.5154 11.75 22.3009V21.5995Z"></path>
+                <path d="M38.3455 15.241H40.6572L44.9499 22.2582H50.2059L45.4452 14.7456C48.0872 13.8375 49.628 11.8012 49.628 8.85671C49.628 4.72899 46.7389 2.5 42.0881 2.5H33.75V22.2582H38.3455V15.241ZM38.3455 11.4985V6.38009H41.8404C44.0144 6.38009 45.115 7.31571 45.115 8.93927C45.115 10.5353 44.0144 11.4985 41.8404 11.4985H38.3455Z"></path>
+                <path d="M58.113 22.5607C61.0026 22.5607 63.6446 21.1023 64.7178 18.3229L61.0305 17.1396C60.6177 18.4055 59.5444 19.0659 58.1682 19.0659C56.4896 19.0659 55.3064 17.9377 55.0036 15.9563H64.8278V14.8006C64.8278 10.7002 62.4335 7.45312 58.0309 7.45312C53.8477 7.45312 50.7656 10.7002 50.7656 14.9932C50.7656 19.5062 53.7378 22.5607 58.113 22.5607ZM57.9757 10.8655C59.5991 10.8655 60.4525 11.9662 60.4799 13.2595H55.1413C55.5815 11.6635 56.6274 10.8655 57.9757 10.8655Z"></path>
+                <path d="M67.3281 18.378C67.3281 21.35 68.8967 22.3957 72.0335 22.3957C73.0794 22.3957 73.9051 22.3133 74.6755 22.2031V18.5982C74.1801 18.6532 73.9324 18.6807 73.4097 18.6807C72.309 18.6807 71.6759 18.4606 71.6759 17.2498V11.3884H74.5103V7.75595H71.6759V3.73828H67.3281V7.75595H65.4844V11.3884H67.3281V18.378Z"></path>
+                <path d="M90.4203 15.0207C90.4203 10.5077 87.4212 7.45312 83.1555 7.45312C78.8628 7.45312 75.8906 10.5077 75.8906 15.0207C75.8906 19.5337 78.8628 22.5607 83.1555 22.5607C87.4212 22.5607 90.4203 19.5337 90.4203 15.0207ZM80.2663 15.0207C80.2663 12.489 81.3943 11.0581 83.1555 11.0581C84.9171 11.0581 86.0451 12.489 86.0451 15.0207C86.0451 17.5524 84.9171 18.9833 83.1555 18.9833C81.3943 18.9833 80.2663 17.5524 80.2663 15.0207Z"></path>
+                <path d="M106.28 15.0207C106.28 10.5077 103.281 7.45312 99.0148 7.45312C94.7222 7.45312 91.75 10.5077 91.75 15.0207C91.75 19.5337 94.7222 22.5607 99.0148 22.5607C103.281 22.5607 106.28 19.5337 106.28 15.0207ZM96.1257 15.0207C96.1257 12.489 97.2537 11.0581 99.0148 11.0581C100.776 11.0581 101.904 12.489 101.904 15.0207C101.904 17.5524 100.776 18.9833 99.0148 18.9833C97.2537 18.9833 96.1257 17.5524 96.1257 15.0207Z"></path>
+                <path d="M112.747 2.5H108.344V22.2582H112.747V2.5Z"></path>
+              </svg>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-4 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+              <span class="flex items-center gap-2 text-sm font-medium">
+                Learn More{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right w-4 h-4"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+          <a
+            class="group w-full h-28 flex items-center justify-center relative p-4 border-l"
+            href="#"
+          >
+            <div class="transition-all duration-200 [cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-0 group-hover:-translate-y-4 duration-300 flex items-center justify-center w-full h-full">
+              <svg
+                width="73"
+                height="31"
+                viewBox="0 0 73 31"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="dark:fill-white fill-black"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M72.2313 15.5944C72.2313 10.4676 69.7478 6.4222 65.0013 6.4222C60.2348 6.4222 57.3508 10.4676 57.3508 15.5543C57.3508 21.5824 60.7558 24.6264 65.6423 24.6264C68.0253 24.6264 69.8278 24.0857 71.1898 23.3247V19.3194C69.8278 20.0003 68.2658 20.4209 66.2833 20.4209C64.3403 20.4209 62.6183 19.74 62.3978 17.3768H72.1913C72.1913 17.1165 72.2313 16.0751 72.2313 15.5944ZM62.3378 13.6919C62.3378 11.4289 63.7198 10.4876 64.9813 10.4876C66.2028 10.4876 67.5048 11.4289 67.5048 13.6919H62.3378ZM49.6203 6.4222C47.6578 6.4222 46.3958 7.3434 45.6948 7.98425L45.4348 6.7426H41.0288V30.0938L46.0353 29.0323L46.0553 23.3648C46.7763 23.8855 47.8378 24.6264 49.6003 24.6264C53.1853 24.6264 56.4498 21.7426 56.4498 15.3941C56.4298 9.5864 53.1253 6.4222 49.6203 6.4222ZM48.4188 20.2206C47.2373 20.2206 46.5363 19.8001 46.0553 19.2794L46.0353 11.8494C46.5563 11.2687 47.2773 10.8681 48.4188 10.8681C50.2413 10.8681 51.5028 12.9108 51.5028 15.5343C51.5028 18.2179 50.2613 20.2206 48.4188 20.2206ZM34.1393 5.2406L39.1663 4.15915V0.09375L34.1393 1.15515V5.2406ZM34.1393 6.76265H39.1663V24.286H34.1393V6.76265ZM28.7518 8.2446L28.4313 6.76265H24.1053V24.286H29.1123V12.4102C30.2938 10.8681 32.2968 11.1485 32.9178 11.3688V6.76265C32.2768 6.5223 29.9333 6.08175 28.7518 8.2446ZM18.7383 2.41685L13.8513 3.45825L13.8313 19.4996C13.8313 22.4636 16.0543 24.6465 19.0188 24.6465C20.6608 24.6465 21.8623 24.3461 22.5233 23.9856V19.9202C21.8823 20.1805 18.7183 21.1017 18.7183 18.1378V11.0284H22.5233V6.76265H18.7183L18.7383 2.41685ZM5.19971 11.8494C5.19971 11.0684 5.84061 10.768 6.90206 10.768C8.42411 10.768 10.3468 11.2286 11.8688 12.0497V7.3434C10.2066 6.68255 8.56431 6.4222 6.90206 6.4222C2.83651 6.4222 0.132812 8.545 0.132812 12.0898C0.132812 17.6171 7.74321 16.736 7.74321 19.1191C7.74321 20.0403 6.94211 20.3407 5.82056 20.3407C4.15831 20.3407 2.03541 19.6598 0.353111 18.7386V23.505C2.21566 24.3061 4.09821 24.6465 5.82056 24.6465C9.98626 24.6465 12.8503 22.5837 12.8503 18.9989C12.8303 13.031 5.19971 14.0924 5.19971 11.8494Z"
+                ></path>
+              </svg>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-4 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+              <span class="flex items-center gap-2 text-sm font-medium">
+                Learn More{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-right w-4 h-4"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+      <div class="flex relative">
+      <div class="flex-2/3">
+        <div class="border-b w-full p-10 md:p-14">
+          <div class="flex flex-col items-center justify-center gap-2 ">
+            <h2 class="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance pb-1">Empower Your Users</h2>
+            <p class="text-muted-foreground text-center text-balance font-medium">Ask your AI Agent for real-time collaboration, seamless integrations, and actionable insights to streamline your operations.</p>
+          </div>
+        </div>
+        <div class="aspect-square grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+          <div class="flex flex-col items-start justify-end aspect-square p-0.5 relative after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer max-h-[400px] group">
+            <div class="relative flex size-full items-center justify-center h-full overflow-hidden">
+              <div class="w-full h-full p-4 flex flex-col items-center justify-center gap-5">
+                <div class="pointer-events-none absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-background to-transparent z-20"></div>
+                <div class="max-w-md mx-auto w-full flex flex-col gap-2" style="transform: translateY(-75px);">
+                  <div class="flex items-end justify-end gap-3">
+                    <div class="max-w-[280px] bg-secondary text-white p-4 rounded-2xl ml-auto shadow-[0_0_10px_rgba(0,0,0,0.05)]" style="opacity: 1; transform: none;">
+                      <p class="text-sm">Hey, I need help scheduling a team meeting that works well for everyone. Any suggestions for finding an optimal time slot?</p>
+                    </div>
+                    <div class="flex items-center bg-background rounded-full w-fit border border-border flex-shrink-0">
+                      <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="User Avatar" class="size-8 rounded-full flex-shrink-0">
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <div class="flex items-center bg-background rounded-full size-10 flex-shrink-0 justify-center shadow-[0_0_10px_rgba(0,0,0,0.05)] border border-border">
+                      <svg width="42" height="24" viewBox="0 0 42 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-[var(--secondary)] size-4">
+                        <g clip-path="url(#clip0_322_9172)">
+                          <path d="M22.3546 0.96832C22.9097 0.390834 23.6636 0.0664062 24.4487 0.0664062C27.9806 0.0664062 31.3091 0.066408 34.587 0.0664146C41.1797 0.0664284 44.481 8.35854 39.8193 13.2082L29.6649 23.7718C29.1987 24.2568 28.4016 23.9133 28.4016 23.2274V13.9234L29.5751 12.7025C30.5075 11.7326 29.8472 10.0742 28.5286 10.0742H13.6016L22.3546 0.96832Z" fill="current"></path>
+                          <path d="M19.6469 23.0305C19.0919 23.608 18.338 23.9324 17.5529 23.9324C14.021 23.9324 10.6925 23.9324 7.41462 23.9324C0.821896 23.9324 -2.47942 15.6403 2.18232 10.7906L12.3367 0.227022C12.8029 -0.257945 13.6 0.0855283 13.6 0.771372L13.6 10.0754L12.4265 11.2963C11.4941 12.2662 12.1544 13.9246 13.473 13.9246L28.4001 13.9246L19.6469 23.0305Z" fill="current"></path>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_322_9172">
+                            <rect width="42" height="24" fill="white"></rect>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="relative">
+                      <div class="absolute left-0 top-0 md:min-w-[300px] min-w-[220px] p-4 bg-accent border border-border rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.05)]" style="opacity: 1; transform: none;">
+                        <div>
+                          <div class="overflow-hidden transition-[max-height] duration-300 ease-out" style="max-height: 120px;">
+                            <div>
+                              <div class="text-muted-foreground prose prose-sm dark:prose-invert text-sm transition-opacity duration-300 ease-out" style="opacity: 1;">
+                                <div>
+                                  <p>Based on your calendar patterns and preferences, I recommend scheduling the team meeting for Tuesday at 2pm. This time slot has historically had the highest attendance rate, and it avoids conflicts with other recurring meetings.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-1 flex-col gap-2 p-6">
+              <h3 class="text-lg tracking-tighter font-semibold">Real-time AI Collaboration</h3>
+              <p class="text-muted-foreground">Experience real-time assistance. Ask your AI Agent to coordinate tasks, answer questions, and maintain team alignment.</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-start justify-end aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer max-h-[400px] group">
+            <div class="relative flex size-full items-center justify-center h-full overflow-hidden">
+              <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
+                <div class="pointer-events-none absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-background to-transparent z-20"></div>
+                <div class="pointer-events-none absolute top-0 left-0 h-20 w-full bg-gradient-to-b from-background to-transparent z-20"></div>
+                <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 size-16 bg-secondary p-2 rounded-full z-30 md:bottom-0 md:top-auto">
+                  <svg width="42" height="24" viewBox="0 0 42 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white size-10">
+                    <g clip-path="url(#clip0_322_9172)">
+                      <path d="M22.3546 0.96832C22.9097 0.390834 23.6636 0.0664062 24.4487 0.0664062C27.9806 0.0664062 31.3091 0.066408 34.587 0.0664146C41.1797 0.0664284 44.481 8.35854 39.8193 13.2082L29.6649 23.7718C29.1987 24.2568 28.4016 23.9133 28.4016 23.2274V13.9234L29.5751 12.7025C30.5075 11.7326 29.8472 10.0742 28.5286 10.0742H13.6016L22.3546 0.96832Z" fill="current"></path>
+                      <path d="M19.6469 23.0305C19.0919 23.608 18.338 23.9324 17.5529 23.9324C14.021 23.9324 10.6925 23.9324 7.41462 23.9324C0.821896 23.9324 -2.47942 15.6403 2.18232 10.7906L12.3367 0.227022C12.8029 -0.257945 13.6 0.0855283 13.6 0.771372L13.6 10.0754L12.4265 11.2963C11.4941 12.2662 12.1544 13.9246 13.473 13.9246L28.4001 13.9246L19.6469 23.0305Z" fill="current"></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_322_9172">
+                        <rect width="42" height="24" fill="white"></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
+                  <div class="relative flex h-full w-full items-center justify-center translate-y-0 md:translate-y-32">
+                    <div>
+                      <div class="pointer-events-none absolute inset-0" style="width: 200px; height: 200px; left: calc(50% - 100px); top: calc(50% - 100px); opacity: 1; transform: none;">
+                        <div class="size-full rounded-full border border-[0,0,0,0.07] dark:border-[rgba(249,250,251,0.07)] bg-gradient-to-b from-[rgba(0,0,0,0.05)] from-0% via-[rgba(249,250,251,0.00)] via-54.76% dark:bg-gradient-to-b dark:from-[rgba(249,250,251,0.03)] dark:from-0% dark:via-[rgba(249,250,251,0.00)] dark:via-54.76%"></div>
+                      </div>
+                    </div>
+                    <div style="--duration: 20; --radius: 98; --angle: 0; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="#0086FF"></path>
+                            <path d="M34.4067 25.7667C33.678 26.7432 32.145 28.3644 31.2924 28.3644H27.3297V25.7646H30.486C30.9375 25.7646 31.368 25.5819 31.6788 25.2606C33.3 23.5806 34.2366 21.5814 34.2366 19.4373C34.2366 15.7791 31.5024 12.5451 27.3276 10.5963V8.84908C27.3276 8.09728 26.7186 7.48828 25.9668 7.48828C25.215 7.48828 24.606 8.09728 24.606 8.84908V9.57358C23.4363 9.23128 22.1973 8.97088 20.9037 8.82178C23.0457 11.1486 24.354 14.2608 24.354 17.6733C24.354 20.733 23.3082 23.5428 21.5505 25.7688H24.606V28.3728H20.133C19.5282 28.3728 19.0368 27.8835 19.0368 27.2766V26.1384C19.0368 25.9389 18.8751 25.7751 18.6735 25.7751H12.7767C12.6612 25.7751 12.5625 25.8696 12.5625 25.9851C12.5583 30.6429 16.2438 34.1394 20.6517 34.1394H33.0942C36.0762 34.1394 37.4097 30.3174 39.1569 27.8856C39.8352 26.9448 41.4627 26.1888 41.9562 25.9788C42.0465 25.941 42.099 25.857 42.099 25.7583V24.2463C42.099 24.093 41.9478 23.9775 41.7987 24.0195C41.7987 24.0195 34.6062 25.6722 34.5222 25.6953C34.4382 25.7205 34.4067 25.7688 34.4067 25.7688V25.7667Z" fill="white"></path>
+                            <path d="M22.0494 17.6649C22.0494 15.3192 21.2451 13.1604 19.9011 11.4531L13.1328 23.1648H20.4135C21.4488 21.5856 22.0515 19.6956 22.0515 17.667L22.0494 17.6649Z" fill="white"></path>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 20; --radius: 98; --angle: 120; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="#121212"></path>
+                            <g clip-path="url(#clip0_1_4134)">
+                              <path d="M28.5219 36.7564C27.7374 37.7443 26.1469 37.2031 26.128 35.9417L25.8516 17.4922H38.257C40.5039 17.4922 41.7571 20.0874 40.3599 21.8472L28.5219 36.7564Z" fill="url(#paint0_linear_1_4134)"></path>
+                              <path d="M28.5219 36.7564C27.7374 37.7443 26.1469 37.2031 26.128 35.9417L25.8516 17.4922H38.257C40.5039 17.4922 41.7571 20.0874 40.3599 21.8472L28.5219 36.7564Z" fill="url(#paint1_linear_1_4134)" fill-opacity="0.2"></path>
+                              <path d="M23.48 7.06882C24.2645 6.08082 25.8551 6.62217 25.874 7.88359L25.9951 26.333H13.745C11.4979 26.333 10.2447 23.7378 11.642 21.978L23.48 7.06882Z" fill="#3ECF8E"></path>
+                            </g>
+                          </g>
+                          <defs>
+                            <filter id="filter0_dddd_1_4134" x="0" y="0" width="52" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="1"></feOffset>
+                              <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_4134"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="3"></feOffset>
+                              <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect1_dropShadow_1_4134" result="effect2_dropShadow_1_4134"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="7"></feOffset>
+                              <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect2_dropShadow_1_4134" result="effect3_dropShadow_1_4134"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="12"></feOffset>
+                              <feGaussianBlur stdDeviation="2.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect3_dropShadow_1_4134" result="effect4_dropShadow_1_4134"></feBlend>
+                              <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1_4134" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="paint0_linear_1_4134" x1="25.8516" y1="21.5829" x2="36.8771" y2="26.207" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#249361"></stop>
+                              <stop offset="1" stop-color="#3ECF8E"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear_1_4134" x1="20.9634" y1="14.8902" x2="25.9916" y2="24.3555" gradientUnits="userSpaceOnUse">
+                              <stop></stop>
+                              <stop offset="1" stop-opacity="0"></stop>
+                            </linearGradient>
+                            <clipPath id="clip0_1_4134">
+                              <rect width="29.9027" height="31" fill="white" transform="translate(11.0469 6.5)"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 20; --radius: 98; --angle: 240; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="white"></path>
+                            <g clip-path="url(#clip0_1_4123)">
+                              <mask id="mask0_1_4123" maskUnits="userSpaceOnUse" x="15" y="7" width="21" height="30">
+                                <path d="M35.875 7H15.875V37H35.875V7Z" fill="white"></path>
+                              </mask>
+                              <g>
+                                <path d="M20.875 37.0001C23.635 37.0001 25.875 34.7601 25.875 32.0001V27.0001H20.875C18.115 27.0001 15.875 29.2401 15.875 32.0001C15.875 34.7601 18.115 37.0001 20.875 37.0001Z" fill="#0ACF83"></path>
+                                <path d="M15.875 21.9999C15.875 19.2399 18.115 16.9999 20.875 16.9999H25.875V26.9999H20.875C18.115 26.9999 15.875 24.7599 15.875 21.9999Z" fill="#A259FF"></path>
+                                <path d="M15.875 12C15.875 9.24 18.115 7 20.875 7H25.875V17H20.875C18.115 17 15.875 14.76 15.875 12Z" fill="#F24E1E"></path>
+                                <path d="M25.875 7H30.875C33.635 7 35.875 9.24 35.875 12C35.875 14.76 33.635 17 30.875 17H25.875V7Z" fill="#FF7262"></path>
+                                <path d="M35.875 21.9999C35.875 24.7599 33.635 26.9999 30.875 26.9999C28.115 26.9999 25.875 24.7599 25.875 21.9999C25.875 19.2399 28.115 16.9999 30.875 16.9999C33.635 16.9999 35.875 19.2399 35.875 21.9999Z" fill="#1ABCFE"></path>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pointer-events-none absolute inset-0" style="width: 320px; height: 320px; left: calc(50% - 160px); top: calc(50% - 160px); opacity: 1; transform: none;">
+                        <div class="size-full rounded-full border border-[0,0,0,0.07] dark:border-[rgba(249,250,251,0.07)] bg-gradient-to-b from-[rgba(0,0,0,0.05)] from-0% via-[rgba(249,250,251,0.00)] via-54.76% dark:bg-gradient-to-b dark:from-[rgba(249,250,251,0.03)] dark:from-0% dark:via-[rgba(249,250,251,0.00)] dark:via-54.76%"></div>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 156.8; --angle: 0; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="#6363F1"></path>
+                            <g clip-path="url(#clip0_1_4101)">
+                              <path d="M12 22.0011C12 22.557 12.1516 23.0624 12.4043 23.5173L17.3069 32.0083C17.8123 32.8675 18.5704 33.5751 19.5307 33.8783C21.3502 34.4848 23.3213 33.7267 24.2816 32.1094L25.444 30.0372L20.7942 21.9505L25.7473 13.409L26.9097 11.3873C27.2635 10.7808 27.7184 10.2754 28.2744 9.87109H20.6931C19.3791 9.87109 18.1155 10.5787 17.4585 11.7411L12.4043 20.4848C12.1516 20.9397 12 21.4451 12 22.0011Z" fill="white"></path>
+                              <path d="M40.0009 22.0019C40.0009 21.446 39.8493 20.9405 39.5966 20.4857L34.6435 11.8936C33.6832 10.2257 31.7121 9.51816 29.8926 10.1247C28.9323 10.4279 28.1742 11.1355 27.6688 11.9947L26.5063 13.9153L31.2067 22.0019L26.2536 30.5434L25.0912 32.6156C24.7374 33.2221 24.2825 33.7275 23.7266 34.1319H31.3583C32.6724 34.1319 33.9359 33.4243 34.593 32.2618L39.6471 23.5182C39.8493 23.0633 40.0009 22.5579 40.0009 22.0019Z" fill="white"></path>
+                            </g>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_1_4101">
+                              <rect width="28" height="28" fill="white" transform="translate(12 8)"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 156.8; --angle: 120; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="#101828"></path>
+                            <path d="M37.678 13.2664C38.3954 15.4976 38.2063 17.5358 36.7194 19.377C36.0513 20.2045 35.105 20.7428 33.2308 21.2226C33.6954 21.6556 34.1217 22.0294 34.521 22.4302C35.2929 23.2052 36.0595 23.986 36.8108 24.781C38.5668 26.639 38.5001 29.3228 37.3076 31.4453C35.7329 34.2479 31.7191 35.1571 29.2989 33.0723C28.1452 32.0786 27.0621 31.0026 25.9522 29.9584C25.7293 29.7485 25.529 29.5145 25.2864 29.2579C25.0948 29.8493 24.9711 30.4074 24.7399 30.9169C23.4524 33.7547 19.82 34.9039 16.8601 33.4455C14.8504 32.4552 13.9101 30.7587 13.8784 28.6156C13.8134 24.2092 13.8339 19.8011 13.8679 15.3939C13.8907 12.4321 16.3064 9.88977 19.2617 9.83918C23.7709 9.762 28.2832 9.77292 32.793 9.83779C35.1105 9.87113 36.753 11.063 37.678 13.2664ZM21.0218 13.8121C20.2809 13.2306 19.4728 13.0218 18.6063 13.4803C17.7302 13.9439 17.3212 14.6789 17.3266 15.7004C17.3488 19.9172 17.3308 24.134 17.3447 28.3508C17.346 28.7318 17.3968 29.1459 17.5522 29.4864C17.9764 30.415 19.1143 30.8701 20.1817 30.6052C21.2025 30.3518 21.8008 29.5747 21.8013 28.4783C21.804 24.1995 21.7934 19.9206 21.8116 15.6418C21.8147 14.9289 21.594 14.3552 21.0218 13.8121ZM25.8643 21.1924C25.6845 21.2009 25.5046 21.2095 25.2832 21.22C25.2832 22.2251 25.2729 23.1939 25.2932 24.1622C25.2967 24.3236 25.3961 24.5182 25.513 24.6367C27.31 26.4581 29.1012 28.2862 30.9369 30.0681C31.2679 30.3895 31.7728 30.6269 32.2308 30.7023C33.164 30.8562 34.1069 30.2305 34.5663 29.2999C34.9496 28.5235 34.7691 27.5689 34.0724 26.8589C32.4945 25.2511 30.8899 23.6692 29.3299 22.0444C28.7194 21.4085 28.0705 21.0385 27.1623 21.1823C26.7788 21.243 26.3776 21.1924 25.8643 21.1924ZM29.4434 13.2325C27.9264 13.2325 26.4094 13.2325 25.0086 13.2325C25.1354 14.7766 25.2569 16.2585 25.3812 17.7726C27.7177 17.7726 30.0693 17.7785 32.4208 17.7705C33.8172 17.7656 34.7019 16.8615 34.6935 15.4759C34.6855 14.157 33.7615 13.2426 32.4172 13.2339C31.4674 13.2276 30.5175 13.2325 29.4434 13.2325Z" fill="#FEFEFE"></path>
+                          </g>
+                          <defs>
+                            <filter id="filter0_dddd_1_4106" x="0" y="0" width="52" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="1"></feOffset>
+                              <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_4106"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="3"></feOffset>
+                              <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect1_dropShadow_1_4106" result="effect2_dropShadow_1_4106"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="7"></feOffset>
+                              <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect2_dropShadow_1_4106" result="effect3_dropShadow_1_4106"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="12"></feOffset>
+                              <feGaussianBlur stdDeviation="2.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect3_dropShadow_1_4106" result="effect4_dropShadow_1_4106"></feBlend>
+                              <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1_4106" result="shape"></feBlend>
+                            </filter>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 156.8; --angle: 240; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="white"></path>
+                            <g clip-path="url(#clip0_1_4143)">
+                              <path d="M26 34C25.5426 30.9809 24.131 28.1874 21.9718 26.0282C19.8126 23.869 17.0191 22.4574 14 22C17.0191 21.5426 19.8126 20.131 21.9718 17.9718C24.131 15.8126 25.5426 13.0191 26 10C26.4575 13.0191 27.8692 15.8125 30.0283 17.9717C32.1875 20.1308 34.9809 21.5425 38 22C34.9809 22.4575 32.1875 23.8692 30.0283 26.0283C27.8692 28.1875 26.4575 30.9809 26 34Z" fill="url(#paint0_linear_1_4143)"></path>
+                            </g>
+                          </g>
+                          <defs>
+                            <filter id="filter0_dddd_1_4143" x="0" y="0" width="52" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="1"></feOffset>
+                              <feGaussianBlur stdDeviation="1"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_4143"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="3"></feOffset>
+                              <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect1_dropShadow_1_4143" result="effect2_dropShadow_1_4143"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="7"></feOffset>
+                              <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect2_dropShadow_1_4143" result="effect3_dropShadow_1_4143"></feBlend>
+                              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+                              <feOffset dy="12"></feOffset>
+                              <feGaussianBlur stdDeviation="2.5"></feGaussianBlur>
+                              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"></feColorMatrix>
+                              <feBlend mode="normal" in2="effect3_dropShadow_1_4143" result="effect4_dropShadow_1_4143"></feBlend>
+                              <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_1_4143" result="shape"></feBlend>
+                            </filter>
+                            <linearGradient id="paint0_linear_1_4143" x1="13.9999" y1="2410" x2="1663.52" y2="739.48" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#1C7DFF"></stop>
+                              <stop offset="0.52021" stop-color="#1C69FF"></stop>
+                              <stop offset="1" stop-color="#F0DCD6"></stop>
+                            </linearGradient>
+                            <clipPath id="clip0_1_4143">
+                              <rect width="24" height="24" fill="white" transform="translate(14 10)"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="pointer-events-none absolute inset-0" style="width: 460px; height: 460px; left: calc(50% - 230px); top: calc(50% - 230px); opacity: 1; transform: none;">
+                        <div class="size-full rounded-full border border-[0,0,0,0.07] dark:border-[rgba(249,250,251,0.07)] bg-gradient-to-b from-[rgba(0,0,0,0.05)] from-0% via-[rgba(249,250,251,0.00)] via-54.76% dark:bg-gradient-to-b dark:from-[rgba(249,250,251,0.03)] dark:from-0% dark:via-[rgba(249,250,251,0.00)] dark:via-54.76%"></div>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 225.4; --angle: 0; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="black"></path>
+                            <g clip-path="url(#clip0_1_4108)">
+                              <path d="M26 8L39.5 31.3829H12.5L26 8Z" fill="white"></path>
+                            </g>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_1_4108">
+                              <rect width="27" height="23.4141" fill="white" transform="translate(12.5 8)"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 225.4; --angle: 120; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="white"></path>
+                            <g clip-path="url(#clip0_1_4111)">
+                              <path d="M15.5 8.875C15.5 7.83947 16.3395 7 17.375 7H26.125C27.1605 7 28 7.83947 28 8.875V17H17.375C16.3395 17 15.5 16.1605 15.5 15.125V8.875Z" fill="#F26207"></path>
+                              <path d="M28 17H38.625C39.6605 17 40.5 17.8395 40.5 18.875V25.125C40.5 26.1605 39.6605 27 38.625 27H28V17Z" fill="#F26207"></path>
+                              <path d="M15.5 28.875C15.5 27.8395 16.3395 27 17.375 27H28V35.125C28 36.1605 27.1605 37 26.125 37H17.375C16.3395 37 15.5 36.1605 15.5 35.125V28.875Z" fill="#F26207"></path>
+                            </g>
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_1_4111">
+                              <rect width="25" height="30" fill="white" transform="translate(15.5 7)"></rect>
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="--duration: 40; --radius: 225.4; --angle: 240; --icon-size: 60px;" class="absolute flex size-[var(--icon-size)] z-20 p-1 transform-gpu animate-orbit items-center justify-center rounded-full [animation-direction:reverse]">
+                      <div style="opacity: 1; transform: none;">
+                        <svg width="52" height="60" viewBox="0 0 52 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z" fill="#EEEFE8"></path>
+                            <path d="M18.2508 23.0069C18.1951 23.118 18.1096 23.2115 18.0038 23.2768C17.898 23.3421 17.7762 23.3767 17.6518 23.3767C17.5275 23.3767 17.4057 23.3421 17.2999 23.2768C17.1941 23.2115 17.1086 23.118 17.0529 23.0069L16.462 21.8257C16.4155 21.7327 16.3913 21.6302 16.3913 21.5262C16.3913 21.4223 16.4155 21.3197 16.462 21.2267L17.0529 20.0456C17.1086 19.9344 17.1941 19.841 17.2999 19.7757C17.4057 19.7104 17.5275 19.6758 17.6518 19.6758C17.7762 19.6758 17.898 19.7104 18.0038 19.7757C18.1096 19.841 18.1951 19.9344 18.2508 20.0456L18.8417 21.2267C18.8882 21.3197 18.9124 21.4223 18.9124 21.5262C18.9124 21.6302 18.8882 21.7327 18.8417 21.8257L18.2508 23.0069ZM18.2508 29.7047C18.1951 29.8158 18.1096 29.9093 18.0038 29.9746C17.898 30.0399 17.7762 30.0745 17.6518 30.0745C17.5275 30.0745 17.4057 30.0399 17.2999 29.9746C17.1941 29.9093 17.1086 29.8158 17.0529 29.7047L16.4613 28.5235C16.4148 28.4305 16.3906 28.328 16.3906 28.224C16.3906 28.1201 16.4148 28.0176 16.4613 27.9246L17.0522 26.7434C17.1079 26.6322 17.1934 26.5388 17.2992 26.4735C17.405 26.4082 17.5269 26.3736 17.6512 26.3736C17.7755 26.3736 17.8974 26.4082 18.0031 26.4735C18.1089 26.5388 18.1944 26.6322 18.2501 26.7434L18.8411 27.9246C18.8875 28.0176 18.9117 28.1201 18.9117 28.224C18.9117 28.328 18.8875 28.4305 18.8411 28.5235L18.2508 29.7047Z" fill="#1D4AFF"></path>
+                            <path d="M10.9531 27.1607C10.9531 26.5644 11.6747 26.2649 12.0968 26.687L15.1673 29.7575C15.5894 30.1796 15.2906 30.9019 14.6936 30.9019H11.6231C11.4454 30.9019 11.275 30.8313 11.1494 30.7056C11.0237 30.58 10.9531 30.4096 10.9531 30.2319V27.1607ZM10.9531 23.926C10.9531 24.0141 10.9704 24.1013 11.004 24.1827C11.0377 24.2641 11.0871 24.3381 11.1494 24.4004L17.4546 30.7049C17.5168 30.7672 17.5906 30.8167 17.6719 30.8505C17.7532 30.8843 17.8403 30.9018 17.9283 30.9019H21.3921C21.9884 30.9019 22.2879 30.1803 21.8658 29.7582L12.0975 19.9899C11.6747 19.5671 10.9531 19.8659 10.9531 20.4622V23.926ZM10.9531 17.2282C10.9532 17.4059 11.0238 17.5762 11.1494 17.7019L24.1518 30.7062C24.2774 30.8319 24.4478 30.9025 24.6255 30.9025H28.0893C28.6856 30.9025 28.985 30.1803 28.563 29.7582L12.0968 13.2914C11.6747 12.8693 10.9531 13.1681 10.9531 13.765V17.2282ZM17.6509 17.2282C17.651 17.4059 17.7216 17.5762 17.8472 17.7019L29.9029 29.7582C30.325 30.1803 31.0466 29.8808 31.0466 29.2839V25.8207C31.0465 25.643 30.9759 25.4727 30.8503 25.347L18.7946 13.2914C18.3725 12.8693 17.6509 13.1681 17.6509 13.765V17.2282ZM25.4924 13.2914C25.0703 12.8693 24.3488 13.1681 24.3488 13.765V17.2289C24.349 17.4063 24.4196 17.5764 24.5451 17.7019L29.9029 23.0604C30.325 23.4825 31.0466 23.183 31.0466 22.586V19.1229C31.0465 18.9452 30.9759 18.7748 30.8503 18.6492L25.4924 13.2914Z" fill="#F9BD2B"></path>
+                            <path d="M39.4424 27.2418L33.1358 20.9359C32.7138 20.5138 31.9922 20.8126 31.9922 21.4096V30.2312C31.9922 30.4089 32.0628 30.5793 32.1884 30.705C32.3141 30.8306 32.4845 30.9012 32.6622 30.9012H42.4305C42.6082 30.9012 42.7786 30.8306 42.9043 30.705C43.0299 30.5793 43.1005 30.4089 43.1005 30.2312V29.4273C43.1005 29.0574 42.7997 28.762 42.4325 28.7144C41.3008 28.567 40.2495 28.0488 39.4424 27.2418ZM35.2074 28.7579C34.9231 28.7579 34.6505 28.645 34.4494 28.444C34.2484 28.2429 34.1355 27.9703 34.1355 27.686C34.1355 27.4017 34.2484 27.129 34.4494 26.928C34.6505 26.7269 34.9231 26.614 35.2074 26.614C35.4917 26.614 35.7644 26.7269 35.9654 26.928C36.1665 27.129 36.2794 27.4017 36.2794 27.686C36.2794 27.9703 36.1665 28.2429 35.9654 28.444C35.7644 28.645 35.4917 28.7579 35.2074 28.7579Z" fill="black"></path>
+                            <path d="M10.9531 30.2319C10.9531 30.4096 11.0237 30.58 11.1494 30.7056C11.275 30.8313 11.4454 30.9019 11.6231 30.9019H14.6936C15.2906 30.9019 15.5894 30.1796 15.1673 29.7575L12.0968 26.687C11.6747 26.2649 10.9531 26.5637 10.9531 27.1607V30.2319ZM17.6509 18.8455L12.0968 13.2914C11.6747 12.8693 10.9531 13.1681 10.9531 13.765V17.2289C10.9533 17.4063 11.0239 17.5764 11.1494 17.7019L17.6509 24.204V18.8455ZM12.0968 19.9892C11.6747 19.5671 10.9531 19.8659 10.9531 20.4629V23.9267C10.9533 24.1041 11.0239 24.2742 11.1494 24.3997L17.6509 30.9019V25.5433L12.0968 19.9892Z" fill="#1D4AFF"></path>
+                            <path d="M24.3463 19.1229C24.3462 18.9452 24.2756 18.7748 24.15 18.6492L18.7921 13.2914C18.37 12.8693 17.6484 13.1681 17.6484 13.765V17.2289C17.6487 17.4063 17.7193 17.5764 17.8447 17.7019L24.3463 24.204V19.1222V19.1229ZM17.6484 30.9012H21.389C21.9859 30.9012 22.2847 30.1796 21.8626 29.7575L17.6484 25.5433V30.9019V30.9012ZM17.6484 18.8455V23.926C17.6484 24.0141 17.6657 24.1013 17.6994 24.1827C17.733 24.2641 17.7824 24.3381 17.8447 24.4004L24.3463 30.9019V25.8207C24.3462 25.643 24.2756 25.4727 24.15 25.347L17.6484 18.8455Z" fill="#F54E00"></path>
+                          </g>
+                          <defs></defs>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-1 flex-col gap-2 p-6">
+              <h3 class="text-lg tracking-tighter font-semibold">Seamless Integrations</h3>
+              <p class="text-muted-foreground">Unite your favorite tools for effortless connectivity. Boost productivity through interconnected workflows.</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-start justify-end aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer max-h-[400px] group">
+            <div class="relative flex size-full items-center justify-center h-full overflow-hidden">
+              <div class="relative flex size-full items-center justify-center h-[300px] pt-10 overflow-hidden" style="--color: rgba(21 93 252 / 1);">
+                <div class="absolute top-[60%] left-1/2 -translate-x-1/2 w-[2px] h-32 bg-gradient-to-b from-[var(--color)] to-[var(--color-transparent)]" style="opacity: 0;"></div>
+                <div class="opacity-0 transition-opacity duration-300 ease-in-out absolute top-32 left-[42%] -translate-x-1/2 text-sm bg-[#1A1B25] border border-white/[0.07] text-white px-4 py-1 rounded-full h-8 flex items-center justify-center font-mono shadow-[0px_1.1px_0px_0px_rgba(255,255,255,0.20)_inset,0px_4.4px_6.6px_0px_rgba(255,255,255,0.01)_inset,0px_2.2px_6.6px_0px_rgba(18,43,105,0.04),0px_1.1px_2.2px_0px_rgba(18,43,105,0.08),0px_0px_0px_1.1px_rgba(18,43,105,0.08)]">
+                  <number-flow-react class="font-mono"></number-flow-react>
+                </div>
+                <svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(21 93 252 / 0.30196078431372547)"></stop>
+                      <stop offset="100%" stop-color="rgba(21 93 252 / 0)"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M 0 157.33333333333331 C 20,153.06666666666666 60,138.13333333333333 100,136 C 120,138.13333333333333 160,153.0666666666667 200,146.66666666666669 C 220,138.13333333333335 260,110.4 300,104 C 320,106.13333333333333 360,118.93333333333332 400,114.66666666666666 C 420,108.26666666666667 460,97.60000000000001 500,82.66666666666667 L 600 40 L 600,200 L 0,200 Z" fill="url(#lineGradient)" opacity="0" style="transform: scale(0.95); transform-origin: 300px 120px 0px;" transform-origin="300px 120px"></path>
+                  <path d="M 0 157.33333333333331 C 20,153.06666666666666 60,138.13333333333333 100,136 C 120,138.13333333333333 160,153.0666666666667 200,146.66666666666669 C 220,138.13333333333335 260,110.4 300,104 C 320,106.13333333333333 360,118.93333333333332 400,114.66666666666666 C 420,108.26666666666667 460,97.60000000000001 500,82.66666666666667 L 600 40" stroke="rgba(21 93 252 / 1)" stroke-width="2" fill="none" stroke-linecap="round" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="0px 1px"></path>
+                  <circle cx="300" cy="104" r="4" fill="rgba(21 93 252 / 1)" opacity="0" style="transform: scale(0); transform-origin: 300px 104px 0px;" transform-origin="300px 104px"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1 flex-col gap-2 p-6">
+              <h3 class="text-lg tracking-tighter font-semibold">Instant Insight Reporting</h3>
+              <p class="text-muted-foreground">Transform raw data into clear insights in seconds. Empower smarter decisions with real-time, always-learning intelligence.</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-start justify-end aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer max-h-[400px] group">
+            <div class="relative flex size-full items-center justify-center h-full overflow-hidden">
+              <div class="w-full h-full flex flex-col relative">
+                <div class="absolute inset-0 flex -z-10 [mask:linear-gradient(180deg,transparent,black_40%,black_40%,transparent)] ">
+                  <div class=" w-1/2 h-full flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class=" w-1/2 h-full flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent "></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent "></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent "></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent "></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent "></div>
+                  </div>
+                  <div class=" w-1/2 h-full flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class=" w-1/2 h-full flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                  <div class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between">
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                    <div class="w-px h-5 bg-primary first:bg-transparent"></div>
+                  </div>
+                </div>
+                <div class="absolute top-4 left-0 right-0 flex justify-between max-w-md mx-auto px-8 text-sm text-gray-500">
+                  <span>Tue</span>
+                  <span>Wed</span>
+                  <span>Thu</span>
+                  <span>Fri</span>
+                  <span>Sat</span>
+                </div>
+                <div class="absolute top-10 w-[2px] h-[calc(100%-80px)] bg-gradient-to-b from-black dark:from-accent to-transparent z-10" style="opacity: 1; transform: translateX(277px) translateX(-50%);"></div>
+                <div class="absolute top-14 bg-black dark:bg-accent h-6 z-20 flex items-center justify-center text-xs p-2 rounded-md shadow-[0px_2.2px_6.6px_0px_rgba(18,43,105,0.04),0px_1.1px_2.2px_0px_rgba(18,43,105,0.08),0px_0px_0px_1.1px_rgba(18,43,105,0.08),0px_1.1px_0px_0px_rgba(255,255,255,0.20)_inset,0px_4.4px_6.6px_0px_rgba(255,255,255,0.01)_inset]" style="opacity: 1; transform: translateX(277px) translateX(-50%);">
+                  <span class="text-white">12:00 AM</span>
+                </div>
+                <div class="w-full absolute grid gap-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/3">
+                  <div class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary text-white" style="opacity: 0; transform: translateX(-50px);">
+                    <p class="font-medium text-sm">Bento grid</p>
+                  </div>
+                  <div class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary/40 text-white" style="opacity: 0; transform: translateX(554px);">
+                    <p class="font-medium text-sm">Landing Page</p>
+                  </div>
+                  <div class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary/20 border border-secondary border-dashed text-secondary" style="opacity: 0; transform: translateX(-50px);">
+                    <p class="font-medium text-sm">Add Task</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-1 flex-col gap-2 p-6">
+              <h3 class="text-lg tracking-tighter font-semibold">Smart Automation</h3>
+              <p class="text-muted-foreground">Set it, forget it. Your AI Agent tackles repetitive tasks so you can focus on strategy, innovation, and growth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1/3 border-l p-10 flex flex-col gap-2 items-center justify-between">
+        <img src="/android-mock.png" class="max-w-100 max-h-[80vh] sticky top-10 mb-16" />
+         <Button variant='outline'>
+          <DownloadIcon />
+          Download App
+        </Button>
+      </div>
+    </div>
+    <hr />
+    <div class="py-20"></div>
+  </BorderedLayout>
+</Layout>
