@@ -1,17 +1,16 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-
-import react from '@astrojs/react';
+import cloudflare from "@astrojs/cloudflare";
+import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import cloudflare from '@astrojs/cloudflare';
+// @ts-check
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
   adapter: cloudflare({
-    imageService: 'cloudflare'
+    imageService: "cloudflare",
   }),
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });
