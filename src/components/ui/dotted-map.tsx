@@ -22,10 +22,13 @@ export interface DottedMapProps extends React.SVGProps<SVGSVGElement> {
   stagger?: boolean;
 }
 
+const { points, addMarkers } = createMap({
+  width: 150,
+  height: 75,
+  mapSamples: 4500,
+});
+
 export function DottedMap({
-  width = 150,
-  height = 75,
-  mapSamples = 5000,
   markers = [
     {
       id: "paris",
@@ -115,12 +118,6 @@ export function DottedMap({
   className,
   style,
 }: DottedMapProps) {
-  const { points, addMarkers } = createMap({
-    width,
-    height,
-    mapSamples,
-  });
-
   const processedMarkers = addMarkers(markers);
 
   // Compute stagger helpers in a single, simple pass
@@ -197,7 +194,7 @@ export function DottedMap({
   return (
     <svg
       ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${150} ${75}`}
       className={cn("text-gray-500 dark:text-gray-500", className)}
       style={{ width: "100%", height: "100%", ...style }}
     >

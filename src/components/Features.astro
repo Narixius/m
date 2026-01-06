@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button";
 import { DownloadIcon, FileIcon, GlobeIcon, SettingsIcon } from "lucide-react";
 import { Globe } from "@/components/ui/globe";
 import { DottedMap } from "@/components/ui/dotted-map";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { OrbitingPanels } from "@/components/OrbitingPanels";
+import { ServersBeam } from "@/components/ServersBeam";
 ---
 
 <!--
@@ -38,11 +40,12 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
     </div>
     <div class="aspect-square grid grid-cols-1 md:grid-cols-2 overflow-hidden">
       <div
-        class="overflow-hidden flex flex-col items-start justify-end w-full aspect-square p-0.5 relative after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer group"
+        class="overflow-hidden flex flex-col items-start justify-end w-full aspect-square p-0.5 relative after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
         <DottedMap
           client:load
-          className="absolute scale-[2] transform-gpu translate-y-10 -translate-x-16"
+          server:defer
+          className="absolute scale-[1.3] transform-gpu -translate-y-22 -translate-x-4"
         />
         <div
           class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background h-fit z-20"
@@ -50,14 +53,14 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
           <h3 class="text-lg tracking-tighter font-semibold">
             Visual VPN Interface
           </h3>
-          <p class="text-muted-foreground">
+          <p class="text-muted-foreground text-justify">
             An interactive map-based UI that feels like a premium VPN, featuring
             live subscription status and geographic server tracking at a glance.
           </p>
         </div>
       </div>
       <div
-        class="isolate justify-end relative flex flex-col w-full h-full aspect-square p-0.5 before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer group"
+        class="isolate justify-end relative flex flex-col w-full h-full aspect-square p-0.5 before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
         <OrbitingPanels />
         <div
@@ -66,211 +69,44 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
           <h3 class="text-lg tracking-tighter font-semibold">
             Universal Panel Support
           </h3>
-          <p class="text-muted-foreground">
+          <p class="text-muted-foreground text-justify">
             Seamlessly integrated with all major Xray-provider panels, including
-            <b>Marzban</b>, <b>3X-UI</b>, <b>Hiddify</b>, <b>Remnawave</b> and <b
-              >V2Board</b
-            >, via a single, unified dashboard.
+            Marzban, 3X-UI, Hiddify, Remnawave and all the rest of the panels
+            that provide universal subscription links.
           </p>
         </div>
       </div>
       <div
-        class="flex flex-col items-start justify-end w-full h-full aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer group"
+        class="isolate justify-end flex flex-col items-start w-full h-full aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
+        <FlickeringGrid client:load className="absolute" maxOpacity={0.07} />
+        <ServersBeam client:load />
         <div
-          class="relative flex size-full items-center justify-center h-full overflow-hidden"
+          class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background/70 h-fit z-20"
         >
-          <div
-            class="relative flex size-full items-center justify-center h-[300px] pt-10 overflow-hidden"
-            style="--color: rgba(21 93 252 / 1);"
-          >
-            <div
-              class="absolute top-[60%] left-1/2 -translate-x-1/2 w-[2px] h-32 bg-gradient-to-b from-[var(--color)] to-[var(--color-transparent)]"
-              style="opacity: 0;"
-            >
-            </div>
-            <div
-              class="opacity-0 transition-opacity duration-300 ease-in-out absolute top-32 left-[42%] -translate-x-1/2 text-sm bg-[#1A1B25] border border-white/[0.07] text-white px-4 py-1 rounded-full h-8 flex items-center justify-center font-mono shadow-[0px_1.1px_0px_0px_rgba(255,255,255,0.20)_inset,0px_4.4px_6.6px_0px_rgba(255,255,255,0.01)_inset,0px_2.2px_6.6px_0px_rgba(18,43,105,0.04),0px_1.1px_2.2px_0px_rgba(18,43,105,0.08),0px_0px_0px_1.1px_rgba(18,43,105,0.08)]"
-            >
-              <number-flow-react class="font-mono"></number-flow-react>
-            </div>
-            <svg
-              width="600"
-              height="200"
-              viewBox="0 0 600 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stop-color="rgba(21 93 252 / 0.30196078431372547)"></stop>
-                  <stop offset="100%" stop-color="rgba(21 93 252 / 0)"></stop>
-                </linearGradient>
-              </defs>
-              <path
-                d="M 0 157.33333333333331 C 20,153.06666666666666 60,138.13333333333333 100,136 C 120,138.13333333333333 160,153.0666666666667 200,146.66666666666669 C 220,138.13333333333335 260,110.4 300,104 C 320,106.13333333333333 360,118.93333333333332 400,114.66666666666666 C 420,108.26666666666667 460,97.60000000000001 500,82.66666666666667 L 600 40 L 600,200 L 0,200 Z"
-                fill="url(#lineGradient)"
-                opacity="0"
-                style="transform: scale(0.95); transform-origin: 300px 120px 0px;"
-                transform-origin="300px 120px"></path>
-              <path
-                d="M 0 157.33333333333331 C 20,153.06666666666666 60,138.13333333333333 100,136 C 120,138.13333333333333 160,153.0666666666667 200,146.66666666666669 C 220,138.13333333333335 260,110.4 300,104 C 320,106.13333333333333 360,118.93333333333332 400,114.66666666666666 C 420,108.26666666666667 460,97.60000000000001 500,82.66666666666667 L 600 40"
-                stroke="rgba(21 93 252 / 1)"
-                stroke-width="2"
-                fill="none"
-                stroke-linecap="round"
-                pathLength="1"
-                stroke-dashoffset="0px"
-                stroke-dasharray="0px 1px"></path>
-              <circle
-                cx="300"
-                cy="104"
-                r="4"
-                fill="rgba(21 93 252 / 1)"
-                opacity="0"
-                style="transform: scale(0); transform-origin: 300px 104px 0px;"
-                transform-origin="300px 104px"></circle>
-            </svg>
-          </div>
-        </div>
-        <div class="flex-1 flex-col gap-2 p-6">
           <h3 class="text-lg tracking-tighter font-semibold">
-            Instant Insight Reporting
+            Pre-Connect Verification
           </h3>
-          <p class="text-muted-foreground">
-            Transform raw data into clear insights in seconds. Empower smarter
-            decisions with real-time, always-learning intelligence.
+          <p class="text-muted-foreground text-justify">
+            No more dead links. The app automatically pings and verifies server
+            health before you connect, ensuring every tap leads to a working
+            tunnel.
           </p>
         </div>
       </div>
       <div
-        class="flex flex-col items-start justify-end w-full h-full aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group cursor-pointer group"
+        class="isolate flex flex-col items-start justify-end w-full h-full aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
         <div
-          class="relative flex size-full items-center justify-center h-full overflow-hidden"
+          class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background h-fit z-20"
         >
-          <div class="w-full h-full flex flex-col relative">
-            <div
-              class="absolute inset-0 flex -z-10 [mask:linear-gradient(180deg,transparent,black_40%,black_40%,transparent)]"
-            >
-              <div class="w-1/2 h-full flex items-start justify-between">
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div
-                class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between"
-              >
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div class="w-1/2 h-full flex items-start justify-between">
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div
-                class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between"
-              >
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div class="w-1/2 h-full flex items-start justify-between">
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div
-                class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between"
-              >
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div class="w-1/2 h-full flex items-start justify-between">
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-              <div
-                class="w-1/2 h-full border-x border-border/70 border-dashed flex items-start justify-between"
-              >
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-                <div class="w-px h-5 bg-primary first:bg-transparent"></div>
-              </div>
-            </div>
-            <div
-              class="absolute top-4 left-0 right-0 flex justify-between max-w-md mx-auto px-8 text-sm text-gray-500"
-            >
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
-            </div>
-            <div
-              class="absolute top-10 w-[2px] h-[calc(100%-80px)] bg-gradient-to-b from-black dark:from-accent to-transparent z-10"
-              style="opacity: 1; transform: translateX(277px) translateX(-50%);"
-            >
-            </div>
-            <div
-              class="absolute top-14 bg-black dark:bg-accent h-6 z-20 flex items-center justify-center text-xs p-2 rounded-md shadow-[0px_2.2px_6.6px_0px_rgba(18,43,105,0.04),0px_1.1px_2.2px_0px_rgba(18,43,105,0.08),0px_0px_0px_1.1px_rgba(18,43,105,0.08),0px_1.1px_0px_0px_rgba(255,255,255,0.20)_inset,0px_4.4px_6.6px_0px_rgba(255,255,255,0.01)_inset]"
-              style="opacity: 1; transform: translateX(277px) translateX(-50%);"
-            >
-              <span class="text-white">12:00 AM</span>
-            </div>
-            <div
-              class="w-full absolute grid gap-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/3"
-            >
-              <div
-                class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary text-white"
-                style="opacity: 0; transform: translateX(-50px);"
-              >
-                <p class="font-medium text-sm">Bento grid</p>
-              </div>
-              <div
-                class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary/40 text-white"
-                style="opacity: 0; transform: translateX(554px);"
-              >
-                <p class="font-medium text-sm">Landing Page</p>
-              </div>
-              <div
-                class="flex items-center h-8 justify-center gap-2 rounded-lg w-[250px] p-2 shadow-[0px_9px_5px_0px_#00000005,0px_4px_4px_0px_#00000009,0px_1px_2px_0px_#00000010] bg-secondary/20 border border-secondary border-dashed text-secondary"
-                style="opacity: 0; transform: translateX(-50px);"
-              >
-                <p class="font-medium text-sm">Add Task</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-1 flex-col gap-2 p-6">
           <h3 class="text-lg tracking-tighter font-semibold">
-            Smart Automation
+            Direct Provider Bridge
           </h3>
-          <p class="text-muted-foreground">
-            Set it, forget it. Your AI Agent tackles repetitive tasks so you can
-            focus on strategy, innovation, and growth.
+          <p class="text-muted-foreground text-justify">
+            Instant access to your provider. One-tap links take you directly to
+            their renewal and support pages, closing the gap between you and
+            your service.
           </p>
         </div>
       </div>

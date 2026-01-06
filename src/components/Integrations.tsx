@@ -84,7 +84,7 @@ const integrations: Integration[] = [
   },
   {
     name: "X-UI",
-    href: "#",
+    href: "https://google.com",
     logo: (
       <div className="flex gap-2 items-center text-black">
         <LinkIcon size="24" strokeWidth="3px" />

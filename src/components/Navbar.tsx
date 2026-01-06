@@ -3,7 +3,6 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 export const Navbar = () => {
@@ -11,22 +10,22 @@ export const Navbar = () => {
     <NavigationMenu className="mx-auto p-1 ">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="px-4 active">
+          <NavigationMenuLink href="https://google.com" className="px-4 active">
             Home
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="px-4">
+          <NavigationMenuLink href="https://google.com" className="px-4">
             How it works
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="px-4">
+          <NavigationMenuLink href="https://google.com" className="px-4">
             Features
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#" className="px-4">
+          <NavigationMenuLink href="https://google.com" className="px-4">
             Pricing
           </NavigationMenuLink>
         </NavigationMenuItem>
