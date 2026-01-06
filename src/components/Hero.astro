@@ -1,0 +1,45 @@
+---
+import { ChevronRight, PartyPopper } from "lucide-react";
+
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { Button } from "@/components/ui/button";
+import { SparklesText } from "@/components/ui/sparkles-text";
+---
+
+<div class="flex flex-col items-center justify-center mt-24 mb-12">
+  <div class="mb-6">
+    <a
+      href="#"
+      class="text-xs rounded-full border flex gap-2 items-center bg-white"
+    >
+      <AnimatedShinyText
+        className="flex gap-2 h-7 px-3 items-center hover:gap-2.5 transition-all"
+      >
+        <PartyPopper size="16" />
+        Beta Available Now
+        <ChevronRight size="16" className="-ml-1" />
+      </AnimatedShinyText>
+    </a>
+  </div>
+  <div class="max-w-4xl flex flex-col gap-8 items-center">
+    <h2
+      class="text-5xl tracking-tighter text-balance text-center flex flex-wrap gap-3 justify-center"
+    >
+      Your Infra Deserves a <SparklesText client:load
+        >Better Interface</SparklesText
+      >
+      Look Premium. Feel Premium.
+    </h2>
+    <p
+      class="max-w-[800px] text-base md:text-lg text-center w-full text-muted-foreground font-normal text-balance leading-relaxed tracking-tight"
+    >
+      Deliver a clean, reliable, user-friendly app your customers actually want
+      to keep. UX-first, and built to increase retention without touching your
+      infrastructure.
+    </p>
+  </div>
+  <div class="flex gap-3 mt-8">
+    <Button>Get Started</Button>
+    <Button variant="outline">Download App</Button>
+  </div>
+</div>
