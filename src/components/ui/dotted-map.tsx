@@ -222,7 +222,7 @@ export function DottedMap({
               cy={marker.y}
               r={marker.size ?? dotRadius}
               fill={markerColor}
-              key={`${marker.x}-${marker.y}-${index}`}
+              key={`${marker.x}-${marker.y}-${index}-circle`}
             />
             <circle
               cx={marker.x + offsetX}

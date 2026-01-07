@@ -1,3 +1,4 @@
+import { UserIcon } from "lucide-react";
 import { useRef } from "react";
 
 import { Logo } from "@/components/Logo";
@@ -83,39 +84,40 @@ export const ServersBeam = () => {
             ref={serverOutputNode}
             className="z-20 rounded-full aspect-square border border-neutral-300 bg-neutral-50 flex justify-center items-center w-fit p-2"
           >
-            🇩🇪
+            <UserIcon />
           </div>
-          <span className="text-xs font-medium font-mono opacity-0">WSS</span>
+          <span className="bg-white/50 font-mono"> 🇩🇪</span>
         </div>
       </div>
       <AnimatedBeam
-        fromRef={server1Node}
-        toRef={marzNode}
+        fromRef={marzNode}
+        toRef={server1Node}
         containerRef={containerRef}
-        curvature={-100}
+        reverse
       />
       <AnimatedBeam
-        fromRef={server2Node}
-        toRef={marzNode}
+        fromRef={marzNode}
+        toRef={server2Node}
         containerRef={containerRef}
+        reverse
       />
       <AnimatedBeam
-        fromRef={server3Node}
-        toRef={marzNode}
+        fromRef={marzNode}
+        toRef={server3Node}
         containerRef={containerRef}
-        curvature={100}
+        reverse
       />
       <AnimatedBeam
-        fromRef={server4Node}
-        toRef={marzNode}
+        fromRef={marzNode}
+        toRef={server4Node}
         containerRef={containerRef}
-        curvature={-110}
+        reverse
       />
       <AnimatedBeam
-        fromRef={server5Node}
-        toRef={marzNode}
+        fromRef={marzNode}
+        toRef={server5Node}
         containerRef={containerRef}
-        curvature={110}
+        reverse
       />
       <AnimatedBeam
         fromRef={marzNode}

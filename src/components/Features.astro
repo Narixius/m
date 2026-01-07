@@ -1,10 +1,10 @@
 ---
 import { Button } from "@/components/ui/button";
-import { DownloadIcon, FileIcon, GlobeIcon, SettingsIcon } from "lucide-react";
-import { Globe } from "@/components/ui/globe";
+import { DownloadIcon } from "lucide-react";
+import { UniversalLink } from "@/components/UniversalLink";
+import { StackedAlerts } from "@/components/StackedAlerts";
 import { DottedMap } from "@/components/ui/dotted-map";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
-import { OrbitingPanels } from "@/components/OrbitingPanels";
 import { ServersBeam } from "@/components/ServersBeam";
 ---
 
@@ -27,7 +27,7 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
     <div class="border-b w-full p-10 md:p-14">
       <div class="flex flex-col items-center justify-center gap-2">
         <h2
-          class="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance pb-1"
+          class="text-3xl md:text-4xl font-medium text-center text-balance pb-1"
         >
           Empower The Digital Experience
         </h2>
@@ -45,34 +45,29 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
         <DottedMap
           client:load
           server:defer
-          className="absolute scale-[1.3] transform-gpu -translate-y-22 -translate-x-4"
+          className="absolute scale-[2] transform-gpu -translate-y-20 -translate-x-4"
         />
         <div
           class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background h-fit z-20"
         >
-          <h3 class="text-lg tracking-tighter font-semibold">
-            Visual VPN Interface
-          </h3>
-          <p class="text-muted-foreground text-justify">
-            An interactive map-based UI that feels like a premium VPN, featuring
-            live subscription status and geographic server tracking at a glance.
+          <h3 class="text-lg font-semibold">Visual VPN Interface</h3>
+          <p class="text-muted-foreground">
+            An interactive UI that feels like a premium VPN, featuring live
+            subscription status and geographic server tracking at a glance.
           </p>
         </div>
       </div>
       <div
         class="isolate justify-end relative flex flex-col w-full h-full aspect-square p-0.5 before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
-        <OrbitingPanels />
+        <UniversalLink client:load />
         <div
           class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background h-fit z-20"
         >
-          <h3 class="text-lg tracking-tighter font-semibold">
-            Universal Panel Support
-          </h3>
-          <p class="text-muted-foreground text-justify">
-            Seamlessly integrated with all major Xray-provider panels, including
-            Marzban, 3X-UI, Hiddify, Remnawave and all the rest of the panels
-            that provide universal subscription links.
+          <h3 class="text-lg font-semibold">Universal Link Support</h3>
+          <p class="text-muted-foreground">
+            Seamlessly integrated with all major Xray-provider panels, that
+            provide universal subscription links.
           </p>
         </div>
       </div>
@@ -84,29 +79,24 @@ Direct, one-tap links to providers renewal and support pages -> UI showing easy 
         <div
           class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background/70 h-fit z-20"
         >
-          <h3 class="text-lg tracking-tighter font-semibold">
-            Pre-Connect Verification
-          </h3>
-          <p class="text-muted-foreground text-justify">
-            No more dead links. The app automatically pings and verifies server
-            health before you connect, ensuring every tap leads to a working
-            tunnel.
+          <h3 class="text-lg font-semibold">Pre-Connect Verification</h3>
+          <p class="text-muted-foreground">
+            Marz automatically pings and verifies server health before user
+            connect, ensuring every tap leads to a working tunnel.
           </p>
         </div>
       </div>
       <div
         class="isolate flex flex-col items-start justify-end w-full h-full aspect-square p-0.5 relative before:absolute before:-left-0.5 before:top-0 before:z-10 before:h-screen before:w-px before:bg-border before:content-[''] after:absolute after:-top-0.5 after:left-0 after:z-10 after:h-px after:w-screen after:bg-border after:content-[''] group"
       >
+        <StackedAlerts client:load />
         <div
           class="flex-col gap-2 p-6 pt-20 bg-linear-to-b from-transparent to-30% to-background h-fit z-20"
         >
-          <h3 class="text-lg tracking-tighter font-semibold">
-            Direct Provider Bridge
-          </h3>
-          <p class="text-muted-foreground text-justify">
-            Instant access to your provider. One-tap links take you directly to
-            their renewal and support pages, closing the gap between you and
-            your service.
+          <h3 class="text-lg font-semibold">Alerts that Actually help</h3>
+          <p class="text-muted-foreground">
+            One-tap links take directs user to their renewal and support pages,
+            closing the gap between you and your users.
           </p>
         </div>
       </div>

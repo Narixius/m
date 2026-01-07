@@ -114,6 +114,7 @@ const IntegrationCard = ({
     }`}
     href={integration.href}
     aria-label={`Learn more about ${integration.name}`}
+    tabIndex={-1}
   >
     <div className="flex h-full w-full items-center justify-center transition-all duration-300 ease-nice group-hover:-translate-y-4">
       {integration.logo}
