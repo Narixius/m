@@ -7,25 +7,25 @@ import {
 
 export const Navbar = () => {
   return (
-    <NavigationMenu className="mx-auto p-1 ">
+    <NavigationMenu className="mx-auto p-1 hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink href="https://google.com" className="px-4 active">
+          <NavigationMenuLink href="#hero" className="px-4">
             Home
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="https://google.com" className="px-4">
+          <NavigationMenuLink href="#features" className="px-4">
             Features
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="https://google.com" className="px-4">
+          <NavigationMenuLink href="#how-it-works" className="px-4">
             How it works
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="https://google.com" className="px-4">
+          <NavigationMenuLink href="#pricing" className="px-4">
             Pricing
           </NavigationMenuLink>
         </NavigationMenuItem>

@@ -19,13 +19,14 @@ import Footer from "@/components/Footer.astro";
   <Seo title="Marz | Premium VPN Interface" />
   <BorderedLayout>
     <!-- Header & Hero -->
-    <div class="pt-5 pb-10">
-      <div class="px-6 flex gap-2 items-center">
+    <div class="pb-10">
+      <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
         <Logo />
         <Navbar />
-        <Button>Get Started</Button>
+        <a href="#pricing" class="hidden md:flex">
+          <Button>Get Started</Button>
+        </a>
       </div>
-      <hr class="mt-5" />
       <Hero />
     </div>
 
@@ -45,6 +46,7 @@ import Footer from "@/components/Footer.astro";
     <!-- FAQ -->
     <FAQ client:visible />
 
+    <hr class="mt-20" />
     <!-- CTA -->
     <CTA />
 

@@ -54,7 +54,7 @@ export const StackedAlerts = () => {
   return (
     <div className="absolute top-0 size-full flex flex-col items-center justify-center select-none">
       <CardStack items={CARDS} />
-      <div className="w-60 md:w-96 border mt-13 bg-white z-10">
+      <div className="w-96 md:w-96 border mt-13 bg-white z-10">
         <div className="w-full flex items-center justify-between p-3 h-16">
           <div className="flex flex-col gap-0">
             <span className="text-green-600 font-medium">Connected</span>

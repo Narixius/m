@@ -84,12 +84,12 @@ export const FAQ = () => {
   const [openIndex, setOpenIndex] = React.useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-20 px-6">
+    <section id="faq" className="px-6">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-medium tracking-tight mb-4">
+        <h2 className="text-4xl font-medium  mb-4">
           Frequently Asked Questions
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+        <p className="max-w-2xl mx-auto text-muted-foreground text-center">
           Everything you need to know about Marz. Can't find what you're looking
           for? Reach out to our support team.
         </p>

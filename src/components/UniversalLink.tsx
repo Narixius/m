@@ -28,7 +28,7 @@ export const UniversalLink = () => {
         </div>
         <div
           ref={listRef}
-          className="flex gap-4 overflow-hidden p-4 border min-h-87.5 max-h-87.5 bg-background z-10"
+          className="flex flex-col gap-4 p-4 border max-h-screen min-h-screen overflow-hidden bg-background z-10 "
         >
           <AnimatedList>
             {configs.map((item, idx) => (
@@ -105,7 +105,7 @@ const ConfigItem = ({ name, description, icon }: Item) => {
   return (
     <figure
       className={cn(
-        "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden p-4",
+        "relative mx-auto min-h-fit w-full cursor-pointer overflow-hidden p-4",
         // animation styles
         "transition-all duration-200 ease-in-out hover:scale-[103%]",
         // light styles
@@ -116,7 +116,7 @@ const ConfigItem = ({ name, description, icon }: Item) => {
     >
       <div className="flex flex-row items-center gap-3">
         <div className="flex flex-col overflow-hidden">
-          <div className="flex flex-row items-center text-balance justify-between font-medium text-lg whitespace-pre dark:text-white gap-2 min-w-[300px]">
+          <div className="flex flex-row items-center text-balance justify-between font-medium text-lg whitespace-pre dark:text-white gap-2 min-w-[calc(100vw-170px)] sm:min-w-[470px] md:min-w-[600px] lg:min-w-[340px] xl:min-w-[270px] 2xl:min-w-[340px]">
             <div className="flex items-center gap-2">
               <span className="text-lg">{icon}</span>
               <span className="text-sm">{name}</span>

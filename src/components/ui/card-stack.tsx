@@ -37,12 +37,12 @@ export const CardStack = ({
   };
 
   return (
-    <div className="relative w-60 md:w-96">
+    <div className="relative w-96 md:w-96">
       {cards.map((card, index) => {
         return (
           <motion.div
             key={card.id}
-            className="absolute dark:bg-black bg-white w-60 md:w-96 shadow-sm shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
+            className="absolute dark:bg-black bg-white w-96 md:w-96 shadow-sm shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
             style={{
               transformOrigin: "top center",
             }}

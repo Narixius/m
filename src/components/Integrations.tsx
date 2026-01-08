@@ -84,7 +84,7 @@ const integrations: Integration[] = [
   },
   {
     name: "X-UI",
-    href: "https://google.com",
+    href: "#how-it-works",
     logo: (
       <div className="flex gap-2 items-center text-black">
         <LinkIcon size="24" strokeWidth="3px" />
@@ -110,7 +110,7 @@ const IntegrationCard = ({
 }: IntegrationCardProps) => (
   <a
     className={`group relative flex h-28 w-full items-center justify-center p-4 ${
-      showLeftBorder ? "border-l" : ""
+      showLeftBorder ? "md:border-l border-t md:border-t-0" : ""
     }`}
     href={integration.href}
     aria-label={`Learn more about ${integration.name}`}
@@ -138,7 +138,7 @@ export const Integrations = () => {
           Fully compatible with your favorite tools
         </h2>
       </div>
-      <div className="z-20 grid w-full grid-cols-2 items-center justify-center overflow-hidden md:grid-cols-3">
+      <div className="z-20 grid w-full grid-cols-1 items-center justify-center overflow-hidden md:grid-cols-3">
         {integrations.map((integration, index) => (
           <IntegrationCard
             key={integration.name}

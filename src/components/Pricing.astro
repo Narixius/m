@@ -1,6 +1,6 @@
 ---
 import { Button } from "@/components/ui/button";
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, XIcon } from "lucide-react";
 
 interface PricingTier {
   name: string;
@@ -8,41 +8,22 @@ interface PricingTier {
   period: string;
   description: string;
   features: string[];
+  disabledFeatures: string[];
   highlighted?: boolean;
   cta: string;
+  disabled?: boolean;
 }
 
 const tiers: PricingTier[] = [
   {
     name: "Starter",
     price: "Free",
-    period: "",
+    period: "for 7 days",
     description: "Perfect for individuals getting started with Marz.",
-    features: [
-      "Up to 100 users",
-      "Basic server management",
-      "Community support",
-      "Standard protocols",
-      "Basic analytics",
-    ],
+    features: ["Unlimited users", "Full feature"],
+    disabledFeatures: ["Expires after 7 days and needs re-activating"],
     cta: "Get Started",
-  },
-  {
-    name: "Pro",
-    price: "$29",
-    period: "/month",
-    description: "For growing teams that need more power and features.",
-    features: [
-      "Up to 1,000 users",
-      "Advanced server management",
-      "Priority email support",
-      "All protocols supported",
-      "Advanced analytics",
-      "Custom branding",
-      "API access",
-    ],
     highlighted: true,
-    cta: "Start Free Trial",
   },
   {
     name: "Enterprise",
@@ -51,36 +32,34 @@ const tiers: PricingTier[] = [
     description: "For large organizations with specific requirements.",
     features: [
       "Unlimited users",
-      "Dedicated infrastructure",
-      "24/7 phone support",
-      "Custom integrations",
-      "SLA guarantee",
-      "On-premise option",
-      "Dedicated account manager",
+      "Full feature",
+      "Monthly and annually activation",
+      "Community support",
     ],
-    cta: "Contact Sales",
+    disabledFeatures: [],
+    cta: "More information in the future",
+    disabled: true,
   },
 ];
 ---
 
 <section id="pricing" class="py-20">
   <div class="text-center mb-16">
-    <h2 class="text-4xl font-medium tracking-tight mb-4">
-      Simple, Transparent Pricing
-    </h2>
-    <p class="text-muted-foreground max-w-2xl mx-auto text-lg">
-      Choose the plan that fits your needs. All plans include a 14-day free
-      trial with no credit card required.
+    <h2 class="text-4xl font-medium mb-4">Simple, Transparent Pricing</h2>
+    <p class="max-w-2xl mx-auto text-muted-foreground text-center">
+      Choose the plan that fits your needs.
     </p>
   </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-y border-border">
+  <hr />
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 mx-auto justify-center gap-0 max-w-240"
+  >
     {
       tiers.map((tier, index) => (
         <div
           class:list={[
             "flex flex-col p-8 relative",
-            index > 0 && "border-l border-border",
+            index > 0 ? "border-x" : "border-l",
             tier.highlighted && "bg-primary/[0.02]",
           ]}
         >
@@ -110,11 +89,19 @@ const tiers: PricingTier[] = [
                 <span class="text-sm">{feature}</span>
               </li>
             ))}
+
+            {tier.disabledFeatures.map((feature) => (
+              <li class="flex items-start gap-3 opacity-50">
+                <XIcon className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                <span class="text-sm">{feature}</span>
+              </li>
+            ))}
           </ul>
 
           <Button
             variant={tier.highlighted ? "default" : "outline"}
             className="w-full"
+            disabled={!!tier.disabled}
           >
             {tier.cta}
           </Button>
@@ -122,4 +109,9 @@ const tiers: PricingTier[] = [
       ))
     }
   </div>
+  <hr />
+  <p class="text-center py-2 text-sm font-medium opacity-50">
+    Pricing will be updated soon *
+  </p>
+  <hr />
 </section>

@@ -6,7 +6,7 @@ const steps = [
     step: "01",
     title: "Import Your Config",
     description:
-      "Paste any V2Ray subscription link or JSON configuration. Marz intelligently parses both formats, extracting server details, protocols, and connection parameters automatically.",
+      "Import universal subscription link. Marz parses both formats (v2ray links and json), extracting server details, protocols, and connection parameters automatically.",
     icon: "link",
   },
   {
@@ -18,16 +18,9 @@ const steps = [
   },
   {
     step: "03",
-    title: "Health Verification",
-    description:
-      "Before you connect, Marz pings each server to verify availability and measure latency. Dead servers are flagged, and the fastest options are highlighted for optimal performance.",
-    icon: "zap",
-  },
-  {
-    step: "04",
     title: "One-Tap Connection",
     description:
-      "Select a server and tap connect. Marz handles protocol negotiation, encryption setup, and tunnel establishment—all behind a clean, intuitive interface.",
+      "Select a server and tap connect. Marz pings each server to verify availability and measure latency. Dead servers are flagged, and the fastest options are highlighted for optimal performance.",
     icon: "shield",
   },
 ];
@@ -36,10 +29,10 @@ const configExample = `vless://uuid@server.com:443?type=tcp&security=tls#🇺�
 vmess://eyJhZGQiOiJzZXJ2ZXIuY29tIiwicG9ydCI6IjQ0MyIsInBzIjoi8J+HqfCfh6ogREUgU2VydmVyIn0=`;
 ---
 
-<section id="how-it-works" class="py-20">
+<section id="how-it-works" class="pt-20">
   <div class="text-center mb-16 px-6">
-    <h2 class="text-4xl font-medium tracking-tight mb-4">How Marz Works</h2>
-    <p class="text-muted-foreground max-w-2xl mx-auto text-lg">
+    <h2 class="text-4xl font-medium mb-4">How Marz Works</h2>
+    <p class="max-w-2xl mx-auto text-muted-foreground text-center">
       From subscription link to secure connection in seconds. Marz handles the
       complexity so your users don't have to.
     </p>
@@ -47,7 +40,7 @@ vmess://eyJhZGQiOiJzZXJ2ZXIuY29tIiwicG9ydCI6IjQ0MyIsInBzIjoi8J+HqfCfh6ogREUgU2Vy
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border-y border-border">
     <!-- Left: Steps -->
-    <div class="border-r border-border">
+    <div class="lg:border-r">
       {
         steps.map((step, index) => (
           <div
@@ -73,59 +66,42 @@ vmess://eyJhZGQiOiJzZXJ2ZXIuY29tIiwicG9ydCI6IjQ0MyIsInBzIjoi8J+HqfCfh6ogREUgU2Vy
     </div>
 
     <!-- Right: Visual representation -->
-    <div class="flex flex-col">
+    <div class="flex flex-col border-t lg:border-t-0" id="deep-linking">
       <!-- Config parsing visualization -->
-      <div class="p-8 border-b border-border flex-1">
-        <h4 class="text-sm font-medium text-muted-foreground mb-4">
-          Supported Input Formats
-        </h4>
-        <div class="space-y-3">
-          <div class="bg-muted/50 rounded-lg p-4 font-mono text-xs break-all">
-            <div class="text-primary">vless://</div>
-            <span class="text-muted-foreground"
-              >uuid@server.com:443?type=tcp&security=tls</span
+      <div class="p-8 pb-0 flex-2/3">
+        <h4 class="font-medium mb-4">Deep linking guide</h4>
+        <div class="">
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Marz leverages deeplinking to implement easy auto import
+            subscription urls. It helps users to one-tap import subscriptions.
+          </p>
+          <h4 class="font-medium text-muted-foreground text-sm mb-4 mt-10">
+            Schema format
+          </h4>
+          <p class="font-mono tracking-normal bg-primary-">
+            <span class="text-primary">marz://import?</span><span
+              class="text-primary/85">url=</span
+            ><span
+              class="underline decoration-dashed underline-offset-3 opacity-75"
+              >https%3A%2F%2Fmarz.surf%2Fsub%2Ffree-net</span
+            ><span class="text-primary/85">&name=</span><span
+              class="underline decoration-dashed underline-offset-3 opacity-75"
+              >marz</span
             >
-            <span class="text-foreground font-semibold">#🇺🇸 US Server</span>
-          </div>
-          <div class="bg-muted/50 rounded-lg p-4 font-mono text-xs break-all">
-            <div class="text-primary">vmess://</div>
-            <span class="text-muted-foreground"
-              >eyJhZGQiOiJzZXJ2ZXIuY29tIiwi...</span
-            >
-            <span class="text-foreground font-semibold">#🇩🇪 DE Server</span>
-          </div>
-          <div class="bg-muted/50 rounded-lg p-4 font-mono text-xs">
-            <span class="text-primary">{"{"}</span>
-            <span class="text-muted-foreground">"outbounds": [...]</span>
-            <span class="text-primary">{"}"}</span>
-            <span class="text-foreground/60 ml-2">JSON Config</span>
-          </div>
+          </p>
+          <h4 class="font-medium text-muted-foreground text-sm mb-4 mt-10">
+            Parameters:
+          </h4>
+          <ul class="flex flex-col gap-2 font-mono text-sm">
+            <li class="whitespace-pre">• url : URI Encoded Subscription URL</li>
+            <li class="whitespace-pre">• name: URI Encoded Provider Name</li>
+          </ul>
         </div>
       </div>
 
       <!-- Protocol support -->
-      <div class="p-8 flex-1">
-        <h4 class="text-sm font-medium text-muted-foreground mb-4">
-          Protocol Support
-        </h4>
-        <div class="grid grid-cols-2 gap-3">
-          {
-            [
-              "VLESS",
-              "VMess",
-              "Trojan",
-              "Shadowsocks",
-              "REALITY",
-              "WireGuard",
-            ].map((protocol) => (
-              <div class="flex items-center gap-2 bg-muted/30 rounded-lg px-4 py-3">
-                <div class="w-2 h-2 rounded-full bg-primary" />
-                <span class="text-sm font-medium">{protocol}</span>
-              </div>
-            ))
-          }
-        </div>
-        <div class="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
+      <div class="p-8 flex-1/3">
+        <div class="p-4 bg-primary/5 border border-primary/10">
           <p class="text-sm text-muted-foreground">
             <span class="font-medium text-foreground">Pro tip:</span> Use country
             flag emojis in your server remarks (e.g., <code class="text-primary"
