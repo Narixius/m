@@ -145,55 +145,9 @@ export function DottedMap({
     return { xStep: step || 1, yToRowIndex: rowMap };
   }, [points]);
 
-  const svgRef = React.useRef<SVGSVGElement>(null);
-  const pointerRef = React.useRef<SVGForeignObjectElement>(null);
-
-  React.useEffect(() => {
-    const circleIds = [
-      "paris",
-      "london",
-      "istanbul",
-      "moscow",
-      "tehran",
-      "tunis",
-      "reykjavik",
-    ];
-    let index = 0;
-
-    const movePointer = () => {
-      const currentId = circleIds[index];
-      const circleElement = document.getElementById(currentId);
-      const pointerIcon = pointerRef.current;
-
-      if (circleElement && pointerIcon && svgRef.current) {
-        const cx = circleElement.getAttribute("cx");
-        const cy = circleElement.getAttribute("cy");
-
-        if (cx && cy) {
-          const x = Number.parseFloat(cx);
-          const y = Number.parseFloat(cy);
-
-          // Use transform for smoother GPU-accelerated animation
-          requestAnimationFrame(() => {
-            pointerIcon.style.transform = `translate(${x - 1}px, ${y + 1}px)`;
-          });
-        }
-      }
-
-      index = (index + 1) % circleIds.length;
-    };
-
-    // Initial position
-    movePointer();
-
-    const interval = setInterval(movePointer, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <svg
-      ref={svgRef}
+      id="dotted-map-svg"
       viewBox={`0 0 ${150} ${75}`}
       className={cn("text-gray-500 dark:text-gray-500", className)}
       style={{ width: "100%", height: "100%", ...style }}
@@ -215,28 +169,25 @@ export function DottedMap({
         const rowIndex = yToRowIndex.get(marker.y) ?? 0;
         const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0;
         return (
-          <>
+          <React.Fragment key={`${marker.x}-${marker.y}-${index}`}>
             <circle
               id={marker.id}
               cx={marker.x + offsetX}
               cy={marker.y}
               r={marker.size ?? dotRadius}
               fill={markerColor}
-              key={`${marker.x}-${marker.y}-${index}-circle`}
             />
             <circle
               cx={marker.x + offsetX}
               cy={marker.y}
               r={(marker.size ?? dotRadius) + 0.5}
               fill={markerColor}
-              key={`${marker.x}-${marker.y}-${index}-shade`}
               className="animate-pulse"
             />
-          </>
+          </React.Fragment>
         );
       })}
       <foreignObject
-        ref={pointerRef}
         id="pointer-icon"
         x="0"
         y="0"

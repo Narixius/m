@@ -11,6 +11,15 @@ export default defineConfig({
     imageService: "cloudflare",
   }),
   vite: {
+    ssr: {
+      external: [
+        "node:buffer",
+        "node:fs/promises",
+        "node:path",
+        "node:url",
+        "node:crypto",
+      ],
+    },
     plugins: [tailwindcss()],
   },
 });

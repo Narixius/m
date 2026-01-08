@@ -1,0 +1,125 @@
+---
+import { Button } from "@/components/ui/button";
+import { CheckIcon } from "lucide-react";
+
+interface PricingTier {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+  cta: string;
+}
+
+const tiers: PricingTier[] = [
+  {
+    name: "Starter",
+    price: "Free",
+    period: "",
+    description: "Perfect for individuals getting started with Marz.",
+    features: [
+      "Up to 100 users",
+      "Basic server management",
+      "Community support",
+      "Standard protocols",
+      "Basic analytics",
+    ],
+    cta: "Get Started",
+  },
+  {
+    name: "Pro",
+    price: "$29",
+    period: "/month",
+    description: "For growing teams that need more power and features.",
+    features: [
+      "Up to 1,000 users",
+      "Advanced server management",
+      "Priority email support",
+      "All protocols supported",
+      "Advanced analytics",
+      "Custom branding",
+      "API access",
+    ],
+    highlighted: true,
+    cta: "Start Free Trial",
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    description: "For large organizations with specific requirements.",
+    features: [
+      "Unlimited users",
+      "Dedicated infrastructure",
+      "24/7 phone support",
+      "Custom integrations",
+      "SLA guarantee",
+      "On-premise option",
+      "Dedicated account manager",
+    ],
+    cta: "Contact Sales",
+  },
+];
+---
+
+<section id="pricing" class="py-20">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl font-medium tracking-tight mb-4">
+      Simple, Transparent Pricing
+    </h2>
+    <p class="text-muted-foreground max-w-2xl mx-auto text-lg">
+      Choose the plan that fits your needs. All plans include a 14-day free
+      trial with no credit card required.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-y border-border">
+    {
+      tiers.map((tier, index) => (
+        <div
+          class:list={[
+            "flex flex-col p-8 relative",
+            index > 0 && "border-l border-border",
+            tier.highlighted && "bg-primary/[0.02]",
+          ]}
+        >
+          {tier.highlighted && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span class="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                Most Popular
+              </span>
+            </div>
+          )}
+
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">{tier.name}</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold">{tier.price}</span>
+              {tier.period && (
+                <span class="text-muted-foreground">{tier.period}</span>
+              )}
+            </div>
+            <p class="text-muted-foreground mt-3 text-sm">{tier.description}</p>
+          </div>
+
+          <ul class="flex-1 space-y-3 mb-8">
+            {tier.features.map((feature) => (
+              <li class="flex items-start gap-3">
+                <CheckIcon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span class="text-sm">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Button
+            variant={tier.highlighted ? "default" : "outline"}
+            className="w-full"
+          >
+            {tier.cta}
+          </Button>
+        </div>
+      ))
+    }
+  </div>
+</section>

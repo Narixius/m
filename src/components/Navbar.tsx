@@ -16,12 +16,12 @@ export const Navbar = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink href="https://google.com" className="px-4">
-            How it works
+            Features
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink href="https://google.com" className="px-4">
-            Features
+            How it works
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>

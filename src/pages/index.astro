@@ -8,30 +8,47 @@ import { Button } from "@/components/ui/button";
 import Hero from "@/components/Hero.astro";
 import { Integrations } from "@/components/Integrations";
 import Features from "@/components/Features.astro";
+import HowItWorks from "@/components/HowItWorks.astro";
+import Pricing from "@/components/Pricing.astro";
+import { FAQ } from "@/components/FAQ";
+import CTA from "@/components/CTA.astro";
+import Footer from "@/components/Footer.astro";
 ---
 
 <Layout>
   <Seo title="Marz | Premium VPN Interface" />
   <BorderedLayout>
+    <!-- Header & Hero -->
     <div class="pt-5 pb-10">
       <div class="px-6 flex gap-2 items-center">
         <Logo />
         <Navbar />
-        <Button> Get Started </Button>
+        <Button>Get Started</Button>
       </div>
       <hr class="mt-5" />
       <Hero />
     </div>
+
+    <!-- Integrations -->
     <Integrations />
+
+    <!-- Features -->
     <Features />
     <hr />
-    <!--
-    App Screenshots with details
-    Pricing
-    CTA
-    FAQ
-    Footer
-    -->
-    <div class="py-20"></div>
+
+    <!-- How It Works -->
+    <HowItWorks />
+
+    <!-- Pricing -->
+    <Pricing />
+
+    <!-- FAQ -->
+    <FAQ client:visible />
+
+    <!-- CTA -->
+    <CTA />
+
+    <!-- Footer -->
+    <Footer />
   </BorderedLayout>
 </Layout>

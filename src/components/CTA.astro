@@ -1,0 +1,34 @@
+---
+import { Button } from "@/components/ui/button";
+import { DownloadIcon, ArrowRightIcon } from "lucide-react";
+import { Ripple } from "@/components/ui/ripple";
+---
+
+<section class="relative py-24 overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <Ripple client:visible className="opacity-50" />
+  </div>
+  <div class="relative z-10 text-center px-6">
+    <h2
+      class="text-4xl md:text-5xl font-medium tracking-tight mb-6 max-w-3xl mx-auto text-balance"
+    >
+      Ready to Transform Your VPN Experience?
+    </h2>
+    <p class="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
+      Join thousands of providers who've already upgraded their user experience.
+      Download the app today and see the difference for yourself.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <Button size="lg" className="gap-2">
+        Get Started <ArrowRightIcon className="w-4 h-4" />
+      </Button>
+      <Button variant="outline" size="lg" className="gap-2">
+        <DownloadIcon className="w-4 h-4" />
+        Download App
+      </Button>
+    </div>
+    <p class="text-sm text-muted-foreground mt-6">
+      Free 14-day trial • No credit card required
+    </p>
+  </div>
+</section>
