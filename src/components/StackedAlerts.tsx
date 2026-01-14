@@ -103,7 +103,8 @@ const createIpPromise = () => {
   if (!_promise) {
     _promise = fetch("https://api.5ip.ir")
       .then((r) => r.json())
-      .then((r) => r.ip);
+      .then((r) => r.ip)
+      .catch(() => "104.104.15.15");
   }
   return _promise;
 };
