@@ -1,0 +1,100 @@
+---
+import { Logo } from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import BorderedLayout from "@/layouts/BorderedLayout.astro";
+import { getCollection } from "astro:content";
+import { Navbar } from "@/components/Navbar";
+import { format } from "date-fns";
+import Footer from "@/components/Footer.astro";
+import CTA from "@/components/CTA.astro";
+import { GitCompareArrows, GithubIcon, TagIcon } from "lucide-react";
+
+const { pathname } = Astro.url;
+const changeLogs = (await getCollection("changelog")).reverse();
+---
+
+<title>Marz | Premium VPN Interface</title>
+<BorderedLayout>
+  <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
+    <Logo />
+    <Navbar currentPathname={pathname} />
+    <a href="#pricing" class="hidden md:flex">
+      <Button>Get Started</Button>
+    </a>
+  </div>
+
+  <main>
+    <div class="w-full p-4 md:p-14">
+      <div class="flex flex-col md:items-center justify-center gap-2">
+        <h2
+          class="text-3xl md:text-4xl font-medium md:text-center text-balance pb-1"
+        >
+          Changelog
+        </h2>
+        <p
+          class="text-muted-foreground md:text-center md:text-balance md:max-w-3xl"
+        >
+          Marz is actively under development and the latest change logs will be
+          published here
+        </p>
+      </div>
+    </div>
+    {
+      changeLogs.map((changeLog) => {
+        return (
+          <div class="border-t grid grid-cols-1 md:grid-cols-12">
+            <div class="col-span-3 lg:col-span-4 border-r flex justify-between md:justify-start md:flex-col p-4 gap-2 md:items-end relative pb-0">
+              <span class="mt-1 font-medium">
+                {format(new Date("20" + changeLog.id), "MMM dd, yyyy")}
+              </span>
+              <a
+                href={`https://github.com/org/repo/releases/tag/v${changeLog.id}`}
+                class="border p-1 bg-muted w-fit font-mono text-sm flex gap-1 items-center"
+              >
+                <TagIcon size="16" />v{changeLog.id.replace("-", ".")}
+              </a>
+              <div class="hidden md:block p-1 bg-primary border absolute -right-1.5 top-7" />
+            </div>
+            <div class="col-span-9 lg:col-span-8 p-4 flex flex-col">
+              <div class="max-w-3xl w-full relative h-0">
+                <div class="z-20 md:mt-2 absolute right-0 flex gap-3">
+                  <a
+                    class="text-sm flex gap-1 items-center"
+                    href={`https://github.com/org/repo/releases/tag/v${changeLog.id}`}
+                  >
+                    <GithubIcon size="16" />
+                    View on Github
+                  </a>
+                </div>
+              </div>
+              <div
+                class="z-10 prose max-w-3xl prose-p:text-justify prose-img:rounded-xl prose-h1:text-2xl prose-h1:font-medium"
+                set:html={changeLog.rendered?.html}
+              />
+              <div class="mt-4">
+                <span class="font-medium text-lg">Contributors</span>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {changeLog.data.contributors.map((c) => (
+                    <a
+                      href={`https://github.com/${c}`}
+                      class="border rounded-sm h-7 flex items-center gap-2 pr-2 text-sm font-medium bg-muted"
+                    >
+                      <img
+                        class="w-7 h-7 rounded-sm bg-primary/20"
+                        src={`https://github.com/${c}.png`}
+                      />
+                      {c}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </main>
+  <hr />
+  <CTA />
+  <Footer />
+</BorderedLayout>

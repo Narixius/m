@@ -1,7 +1,5 @@
 ---
-import { BorderedLayout } from "@/layouts/BorderedLayout";
-import Layout from "@/layouts/Layout.astro";
-import { Seo } from "astro-seo-meta";
+import BorderedLayout from "@/layouts/BorderedLayout.astro";
 import { Navbar } from "@/components/Navbar";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
@@ -13,44 +11,36 @@ import Pricing from "@/components/Pricing.astro";
 import { FAQ } from "@/components/FAQ";
 import CTA from "@/components/CTA.astro";
 import Footer from "@/components/Footer.astro";
+
+const { pathname } = Astro.url;
 ---
 
-<Layout>
-  <Seo title="Marz | Premium VPN Interface" />
-  <BorderedLayout>
-    <!-- Header & Hero -->
-    <div class="pb-10">
-      <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
-        <Logo />
-        <Navbar />
-        <a href="#pricing" class="hidden md:flex">
-          <Button>Get Started</Button>
-        </a>
-      </div>
-      <Hero />
+<title>Marz | Premium VPN Interface</title>
+<BorderedLayout>
+  <div class="pb-10">
+    <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
+      <Logo />
+      <Navbar currentPathname={pathname} />
+      <a href="#pricing" class="hidden md:flex">
+        <Button>Get Started</Button>
+      </a>
     </div>
+    <Hero />
+  </div>
 
-    <!-- Integrations -->
-    <Integrations />
+  <Integrations />
 
-    <!-- Features -->
-    <Features />
-    <hr />
+  <Features />
+  <hr />
 
-    <!-- How It Works -->
-    <HowItWorks />
+  <HowItWorks />
 
-    <!-- Pricing -->
-    <Pricing />
+  <Pricing />
 
-    <!-- FAQ -->
-    <FAQ client:visible />
+  <FAQ client:visible />
 
-    <hr class="mt-20" />
-    <!-- CTA -->
-    <CTA />
+  <hr class="mt-20" />
+  <CTA />
 
-    <!-- Footer -->
-    <Footer />
-  </BorderedLayout>
-</Layout>
+  <Footer />
+</BorderedLayout>

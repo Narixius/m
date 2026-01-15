@@ -20,7 +20,7 @@ export const UniversalLink = () => {
         <LinkIcon ref={iconRef} />
         Import Universal Link
       </Button>
-      <div className="flex justify-center gap-3 relative">
+      <div className="flex justify-center gap-3 relative grow max-h-[calc(100%-100px)] min-h-[calc(100%-100px)]">
         <div className="-top-10 left-3 w-0.5 h-10 bg-border absolute" />
         <div className="top-3 left-3 h-0.5 w-10 bg-border absolute" />
         <div ref={logoRef} className="bg-background z-10 w-fit h-fit">
@@ -28,7 +28,7 @@ export const UniversalLink = () => {
         </div>
         <div
           ref={listRef}
-          className="flex flex-col gap-4 p-4 border max-h-screen min-h-screen overflow-hidden bg-background z-10 "
+          className="flex flex-col gap-4 p-4 border grow h-full min-h-full max-h-full overflow-hidden bg-background z-10 "
         >
           <AnimatedList>
             {configs.map((item, idx) => (
