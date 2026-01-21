@@ -1,0 +1,52 @@
+---
+import BorderedLayout from "@/layouts/BorderedLayout.astro";
+import currencies from "../currencies.json";
+import { type NowPaymentCurrency } from "@/types";
+import { Logo } from "@/components/Logo";
+import { Navbar } from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer.astro";
+import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+
+const { pathname } = Astro.url;
+const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
+
+// const currenciesRes = await GET(Astro);
+// const npCurrencies = (await currenciesRes.json()) as {
+//   currencies: NowPaymentCurrency[];
+// };
+---
+
+<title>Marz | Activation & Checkout</title>
+<BorderedLayout>
+  <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
+    <Logo />
+    <Navbar currentPathname={pathname} />
+    <a href="/#pricing" class="hidden md:flex">
+      <Button>Get Started</Button>
+    </a>
+  </div>
+
+  <main>
+    <div class="w-full px-4 py-8 md:p-14">
+      <div class="flex flex-col md:items-center justify-center gap-2">
+        <h2
+          class="text-2xl md:text-4xl font-medium md:text-center text-balance pb-1"
+        >
+          Activation & Checkout
+        </h2>
+        <p
+          class="text-muted-foreground md:text-center md:text-balance md:max-w-3xl"
+        >
+          Boost your users experience by integrating Marz into your VPN service.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center justify-center pb-20 border-t pt-5 md:pt-10">
+      <CheckoutForm currencies={npCurrencies.currencies} client:idle />
+    </div>
+  </main>
+
+  <Footer />
+</BorderedLayout>;
+

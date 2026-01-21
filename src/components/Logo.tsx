@@ -8,7 +8,7 @@ export const Logo: FC<{ withText?: boolean; className?: string }> = ({
 }) => {
   return (
     <div className={cn("flex gap-1 items-center", className)}>
-      <img src="icon.png" className="size-7" />
+      <img src="/icon.png" className="size-7" />
       {withText && (
         <span className="font-semibold text-2xl text-primary tracking-wide">
           Marz

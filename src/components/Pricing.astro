@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CheckIcon, XIcon } from "lucide-react";
 
 interface PricingTier {
+  id: string;
   name: string;
   price: string;
   period: string;
@@ -16,29 +17,25 @@ interface PricingTier {
 
 const tiers: PricingTier[] = [
   {
-    name: "Starter",
+    id: "trial",
+    name: "Trial",
     price: "Free",
     period: "for 7 days",
     description: "Perfect for individuals getting started with Marz.",
     features: ["Unlimited users", "Full feature"],
     disabledFeatures: ["Expires after 7 days and needs re-activating"],
     cta: "Get Started",
-    highlighted: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
+    id: "individual_1",
+    name: "Individual",
+    price: "5$",
+    period: "for each month",
     description: "For large organizations with specific requirements.",
-    features: [
-      "Unlimited users",
-      "Full feature",
-      "Monthly and annually activation",
-      "Community support",
-    ],
+    features: ["Unlimited users", "Full feature"],
     disabledFeatures: [],
-    cta: "More information in the future",
-    disabled: true,
+    cta: "Activate now",
+    highlighted: true,
   },
 ];
 ---
@@ -98,13 +95,15 @@ const tiers: PricingTier[] = [
             ))}
           </ul>
 
-          <Button
-            variant={tier.highlighted ? "default" : "outline"}
-            className="w-full"
-            disabled={!!tier.disabled}
-          >
-            {tier.cta}
-          </Button>
+          <a href={`/activation?plan=${tier.id}`} class="cursor-pointer">
+            <Button
+              variant={tier.highlighted ? "default" : "outline"}
+              className="w-full"
+              disabled={!!tier.disabled}
+            >
+              {tier.cta}
+            </Button>
+          </a>
         </div>
       ))
     }

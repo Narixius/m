@@ -7,7 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { format } from "date-fns";
 import Footer from "@/components/Footer.astro";
 import CTA from "@/components/CTA.astro";
-import { GitCompareArrows, GithubIcon, TagIcon } from "lucide-react";
+import { GithubIcon, TagIcon } from "lucide-react";
 
 const { pathname } = Astro.url;
 const changeLogs = (await getCollection("changelog")).reverse();
@@ -18,27 +18,40 @@ const changeLogs = (await getCollection("changelog")).reverse();
   <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
     <Logo />
     <Navbar currentPathname={pathname} />
-    <a href="#pricing" class="hidden md:flex">
+    <a href="/#pricing" class="hidden md:flex">
       <Button>Get Started</Button>
     </a>
   </div>
 
   <main>
-    <div class="w-full p-4 md:p-14">
-      <div class="flex flex-col md:items-center justify-center gap-2">
-        <h2
-          class="text-3xl md:text-4xl font-medium md:text-center text-balance pb-1"
-        >
-          Changelog
-        </h2>
-        <p
-          class="text-muted-foreground md:text-center md:text-balance md:max-w-3xl"
-        >
-          Marz is actively under development and the latest change logs will be
-          published here
-        </p>
-      </div>
-    </div>
+    {
+      changeLogs.length === 0 && (
+        <div class="w-full p-20 flex flex-col items-center gap-4">
+          <h2 class="text-3xl md:text-4xl font-medium md:text-center text-balance pb-1">
+            First version will be released soon...
+          </h2>
+          <p class="text-muted-foreground md:text-center md:text-balance md:max-w-3xl">
+            Stay tuned, we are working hard on the first release. As soon as we
+            released the first version, the changelog will be published here.
+          </p>
+        </div>
+      )
+    }
+    {
+      changeLogs.length > 0 && (
+        <div class="w-full p-4 md:p-14">
+          <div class="flex flex-col md:items-center justify-center gap-2">
+            <h2 class="text-3xl md:text-4xl font-medium md:text-center text-balance pb-1">
+              Changelog
+            </h2>
+            <p class="text-muted-foreground md:text-center md:text-balance md:max-w-3xl">
+              Marz is actively under development and the latest change logs will
+              be published here
+            </p>
+          </div>
+        </div>
+      )
+    }
     {
       changeLogs.map((changeLog) => {
         return (
