@@ -17,6 +17,7 @@ export const createPayment = async (price_amount: number, currency: string) => {
       price_amount,
       price_currency: "usd",
       pay_currency: currency,
+      is_fee_paid_by_user: true,
       // ipn_callback_url
     }),
     headers: {

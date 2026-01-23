@@ -1,5 +1,7 @@
 import { integer, sqliteTable, text, index } from "drizzle-orm/sqlite-core";
 
+import type { NowPaymentCreatePaymentResponse } from "@/types";
+
 export const payments = sqliteTable(
   "payments",
   {
@@ -11,7 +13,9 @@ export const payments = sqliteTable(
     domain: text().notNull(),
     paymentStatus: text().notNull(),
     paymentId: text().notNull().unique(),
-    paymentInfo: text().notNull(),
+    paymentInfo: text({ mode: "json" })
+      .$type<NowPaymentCreatePaymentResponse>()
+      .notNull(),
     isTrial: integer({ mode: "boolean" }).notNull(),
     paymentExpiry: integer({ mode: "timestamp" }).notNull(),
     expiresAt: integer({ mode: "timestamp" }).notNull(),

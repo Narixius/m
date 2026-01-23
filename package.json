@@ -43,6 +43,7 @@
     "svg-dotted-map": "^2.0.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
+    "uqr": "^0.1.2",
     "zod": "^4.3.5"
   },
   "devDependencies": {

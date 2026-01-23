@@ -6,7 +6,10 @@ import { createDB } from "db";
 import { payments, subscriptions } from "db/schema";
 import { and, eq, gt } from "drizzle-orm";
 
-import type { NowPaymentCurrency } from "@/types";
+import type {
+  NowPaymentCreatePaymentResponse,
+  NowPaymentCurrency,
+} from "@/types";
 
 import { createPayment, getCurrencies } from "@/lib/now-payment";
 import { plans } from "@/plans";
@@ -80,7 +83,7 @@ export const POST: APIRoute = async (c) => {
         domain: data.domain,
         paymentStatus: payment.payment_status,
         paymentId: payment.payment_id,
-        paymentInfo: JSON.stringify(payment),
+        paymentInfo: payment as NowPaymentCreatePaymentResponse,
         paymentExpiry: new Date(payment.expiration_estimate_date),
         expiresAt: addDays(new Date(), selectedPlan.days),
         isTrial: data.plan === "trial",
@@ -118,6 +121,7 @@ export const POST: APIRoute = async (c) => {
         }
       );
     }
+    if (import.meta.env.DEV) console.error(e);
     return new Response(
       JSON.stringify({
         message: "Something went wrong, please try again later.",

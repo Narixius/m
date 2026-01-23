@@ -26,4 +26,5 @@ export type NowPaymentCreatePaymentResponse = {
   pay_currency: string;
   network: string;
   expiration_estimate_date: string;
+  valid_until: string;
 };
