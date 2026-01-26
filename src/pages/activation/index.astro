@@ -15,6 +15,7 @@ export const prerender = false;
 const { pathname } = Astro.url;
 // const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
 return new Response("ok", { status: 200 });
+
 const currenciesRes = await GET(Astro);
 const npCurrencies = (await currenciesRes.json()) as {
   currencies: NowPaymentCurrency[];
