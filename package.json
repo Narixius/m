@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "pnpm db:migrate && pnpm astro build",
     "preview": "astro preview",
+    "deploy": "pnpm db:migrate --remote && pnpm wrangler deploy",
     "astro": "astro",
     "prepare": "wrangler types",
     "db:migrate": "drizzle-kit generate && wrangler d1 migrations apply marz"
