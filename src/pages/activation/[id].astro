@@ -4,30 +4,55 @@ import { Logo } from "@/components/Logo";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer.astro";
+import { CopyButton } from "@/components/CopyButton";
 import { Badge } from "@/components/ui/badge";
 import { GET } from "@/pages/api/get-payment/[id].ts";
 import { payments } from "db/schema";
 import { renderSVG } from "uqr";
-import { CopyIcon } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { ArrowLeftIcon, HeadsetIcon } from "lucide-react";
+import { Timer } from "@/components/Timer";
+import { differenceInSeconds, formatDistanceToNow } from "date-fns";
+import { cn } from "@/lib/utils";
+import type { ComponentProps } from "react";
+import { startCase } from "es-toolkit";
+import { SUPPORT_URL } from "astro:env/server";
+import { FAQ } from "@/components/FAQ";
+import type { subscriptions } from "db/schema";
 
 const { pathname } = Astro.url;
 export const prerender = false;
 
-const paymentReq = GET(Astro);
-const payment = (await (
-  await paymentReq
-).json()) as typeof payments.$inferSelect;
+const paymentReq = await GET(Astro);
 
-const qrCode = renderSVG(payment.paymentInfo.pay_address, {
+if (!paymentReq.body) return new Response(null, { status: 404 });
+
+const payment = (await paymentReq.json()) as typeof payments.$inferSelect & {
+  subscription?: typeof subscriptions.$inferSelect;
+};
+
+const qrCode = renderSVG(payment.paymentInfo.pay_address || "", {
   blackColor: "#554289",
+  ecc: "Q",
 });
-console.log(payment.paymentInfo);
+
+type PaymentStatus =
+  | "waiting"
+  | "processing"
+  | "partially_paid"
+  | "finished"
+  | "failed"
+  | "expired";
+
+const paymentStatus = payment.paymentInfo.payment_status as PaymentStatus;
+const lastUpdate =
+  payment.paymentInfo.updates.length > 0
+    ? payment.paymentInfo.updates[payment.paymentInfo.updates.length - 1]
+    : null;
 ---
 
 <title>Marz | Activation & Checkout</title>
 <BorderedLayout>
-  <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
+  <div class="px-6 flex gap-2 items-center border-b p-5">
     <Logo />
     <Navbar currentPathname={pathname} />
     <a href="/#pricing" class="hidden md:flex">
@@ -52,76 +77,231 @@ console.log(payment.paymentInfo);
     </div>
     <div class="flex items-center justify-center pb-20 border-t pt-5 md:pt-10">
       <div class="md:max-w-xl flex flex-col w-full gap-4 px-5">
-        <p class="flex gap-1 items-center justify-between w-full">
-          <span>
+        <div class="flex flex-wrap gap-1 items-center justify-between w-full">
+          <div>
             Invoice ID: <Badge variant="outline">{payment.uuid}</Badge>
-          </span>
-          <Badge variant="outline" className="capitalize"
-            >{payment.paymentStatus}</Badge
-          >
-        </p>
-        <div class="flex gap-2">
-          <div class="relative flex items-center justify-center">
-            <div
-              set:html={qrCode}
-              class="[&>svg]:border-2 [&>svg]:border-primary [&>svg]:size-60"
-            />
-            <img
-              src={`https://nowpayments.io/images/coins/${payment.paymentInfo.pay_currency}.svg`}
-              class="size-14 absolute bg-white p-1"
-            />
           </div>
-          <div class="flex gap-2 flex-col overflow-hidden">
-            <span class="text-sm flex flex-col">
-              <span class="text-xs">Amount</span>
-              <div class="flex justify-between gap-2">
-                <span class="font-mono flex items-center gap-2"
-                  >{payment.paymentInfo.pay_amount}
-                  <Button variant="outline" size="icon-sm" className="size-6!">
-                    <CopyIcon className="size-4!" />
-                  </Button>
-                </span>
-                <span class="font-mono"
-                  >~{payment.paymentInfo.price_amount}$</span
-                >
-              </div>
-            </span>
-            <div class="flex flex-col">
-              <span class="text-xs">Address</span>
-              <div class="font-mono text-sm flex gap-2">
-                <span class="wrap-anywhere">
-                  {payment.paymentInfo.pay_address}
-                </span>
-                <Button variant="outline" size="icon-sm" className="size-6!">
-                  <CopyIcon className="size-4!" />
-                </Button>
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-xs">Network</span>
-              <div class="font-mono text-sm flex gap-2">
-                <span class="wrap-anywhere uppercase">
-                  {payment.paymentInfo.network}
-                </span>
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-xs">Expiation</span>
-              <div class="font-mono text-sm flex gap-2">
-                <span class="wrap-anywhere uppercase">
-                  {
-                    formatDistanceToNow(
-                      new Date(payment.paymentInfo.expiration_estimate_date)
-                    )
-                  }
-                </span>
-              </div>
-            </div>
+          <div class="items-center text-sm flex justify-center gap-1">
+            <Badge
+              variant={{
+                waiting: "outline",
+                expired: "destructive",
+                success: "green",
+                processing: "outline",
+                finished: "green",
+                failed: "destructive",
+                partially_paid: "yellow",
+              }[paymentStatus] as ComponentProps<typeof Badge>["variant"]}
+              className="capitalize"
+              >Status: {startCase(paymentStatus)}
+            </Badge>
           </div>
         </div>
+        <p class="text-sm">
+          Plan: {payment.planInfo.name}
+        </p>
+        {
+          !payment.isTrial && (
+            <div class="flex gap-3 flex-col md:flex-row">
+              <div class={cn("relative flex items-center justify-center")}>
+                <div
+                  set:html={qrCode}
+                  class={cn(
+                    "[&>svg]:border-2 [&>svg]:border-primary [&>svg]:size-52",
+                    {
+                      "opacity-20": paymentStatus !== "waiting",
+                    }
+                  )}
+                />
+                <img
+                  src={`https://nowpayments.io/images/coins/${payment.paymentInfo.pay_currency}.svg`}
+                  class={cn("size-14 absolute bg-white p-1", {
+                    "opacity-70": paymentStatus !== "waiting",
+                  })}
+                />
+                {paymentStatus === "expired" && (
+                  <span class="text-red-500 bottom-2 absolute font-bold text-shadow-white text-shadow-lg">
+                    EXPIRED
+                  </span>
+                )}
+              </div>
+              <div class="flex gap-2 flex-col overflow-hidden">
+                <span class="text-sm flex flex-col">
+                  <span class="text-xs">Amount</span>
+                  <div class="flex justify-between gap-2">
+                    <span class="font-mono flex items-center gap-2">
+                      {payment.paymentInfo.pay_amount}
+                      {paymentStatus === "waiting" && (
+                        <CopyButton
+                          text={payment.paymentInfo.pay_amount}
+                          client:idle
+                        />
+                      )}
+                    </span>
+                  </div>
+                </span>
+                <div class="flex flex-col">
+                  <span class="text-xs">Address</span>
+                  <div class="font-mono text-sm flex gap-2">
+                    <span
+                      class={cn("wrap-anywhere", {
+                        "line-through": paymentStatus === "expired",
+                      })}
+                    >
+                      {payment.paymentInfo.pay_address}
+                    </span>
+                    {paymentStatus === "waiting" && (
+                      <CopyButton
+                        text={payment.paymentInfo.pay_address}
+                        client:idle
+                      />
+                    )}
+                  </div>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs">Network</span>
+                  <div class="font-mono text-sm flex gap-2">
+                    <span class="wrap-anywhere uppercase">
+                      {payment.paymentInfo.network}
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs">Expiation</span>
+                  <div class="font-mono text-sm flex gap-2">
+                    <span class="wrap-anywhere uppercase">
+                      {differenceInSeconds(payment.paymentExpiry, new Date()) >
+                      0 ? (
+                        <Timer client:only endTime={payment.paymentExpiry} />
+                      ) : (
+                        formatDistanceToNow(payment.paymentExpiry, {
+                          addSuffix: true,
+                        })
+                      )}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "waiting" && (
+            <div class="mt-4 w-full flex flex-col gap-4">
+              <p class="text-sm text-center">
+                Send the exact amount to the address above with the exact
+                network before the timer expires. Please ensure your transaction
+                completes within the expiration window, or your payment will be
+                canceled and funds may be lost. If you encounter any issues,
+                contact our support team on Telegram.
+              </p>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "partially_paid" && (
+            <div class="mt-4 w-full flex flex-col gap-4 items-center">
+              <p class="text-sm text-center">
+                Your payment has been received but the amount wasn't correct.
+                Please reach out to our support team on Telegram with your
+                transaction details and invoice id so we can assist you.
+              </p>
+              <table class="text-sm bg-primary/10">
+                <tbody>
+                  <tr>
+                    <td class="p-1 pl-2">Invoice ID</td>
+                    <td class="font-mono p-1 pr-2">{payment.uuid}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-1 pl-2">Amount requested</td>
+                    <td class="font-mono p-1 pr-2">
+                      {payment.paymentInfo.pay_amount}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-1 pl-2">Amount actually paid</td>
+                    <td class="font-mono p-1 pr-2">
+                      {lastUpdate.actually_paid}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href={SUPPORT_URL} target="_blank">
+                <Button variant="outline" className="w-fit">
+                  <HeadsetIcon />
+                  Contact Support
+                </Button>
+              </a>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "finished" && (
+            <div class="mt-4 w-full flex flex-col gap-4 items-center">
+              <p class="text-sm text-center">
+                Your payment has been complete and your subscription has been
+                activated. Enjoy your experience with Marz.
+              </p>
+              <p class="text-sm">
+                Subscription ID:{" "}
+                <Badge variant="outline">{payment.subscription?.uuid}</Badge>
+              </p>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "expired" && (
+            <div class="mt-4 w-full flex flex-col gap-4 items-center">
+              <p class="text-sm text-center">
+                This payment window has expired. Please do not send any funds to
+                this address. If you've already sent funds that haven't been
+                verified, please reach out to our support team on Telegram with
+                your transaction details and invoice id so we can assist you.
+              </p>
+              <div class="flex gap-2 w-full justify-center">
+                <Button variant="outline" className="w-fit">
+                  <ArrowLeftIcon />
+                  Back to activation
+                </Button>
+                <a href={SUPPORT_URL} target="_blank">
+                  <Button variant="outline" className="w-fit">
+                    <HeadsetIcon />
+                    Contact Support
+                  </Button>
+                </a>
+              </div>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "processing" && (
+            <div class="mt-4 w-full flex flex-col gap-4 items-center">
+              <p class="text-sm text-center">
+                Your payment has been received and we are processing it.
+              </p>
+            </div>
+          )
+        }
+        {
+          paymentStatus === "failed" && (
+            <div class="mt-4 w-full flex flex-col gap-4 items-center">
+              <p class="text-sm text-center">
+                This payment failed. If you've already sent funds that haven't
+                been verified, please reach out to our support team on Telegram
+                with your transaction details and invoice id so we can assist
+                you.
+              </p>
+              <Button variant="outline" className="w-fit">
+                <ArrowLeftIcon />
+                Back to activation
+              </Button>
+            </div>
+          )
+        }
       </div>
     </div>
   </main>
-
+  <hr class="pb-16" />
+  <FAQ client:visible />
   <Footer />
 </BorderedLayout>

@@ -18,7 +18,7 @@ import {
 
 export const CurrenciesList: FC<{
   currencies: NowPaymentCurrency[];
-  onChange: (currency: string) => void;
+  onChange: (currency: string, item: NowPaymentCurrency) => void;
 }> = ({ currencies, onChange }) => {
   const [selectedCurrency, setSelectedCurrency] =
     useState<NowPaymentCurrency | null>(null);
@@ -83,7 +83,7 @@ export const CurrenciesList: FC<{
       itemToStringLabel={(item) => item.name}
       onValueChange={(item) => {
         setSelectedCurrency(item);
-        if (item) onChange(item.code);
+        if (item) onChange(item.code, item);
       }}
       onItemHighlighted={(item, { reason, index }) => {
         if (!item) {

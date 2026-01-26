@@ -1,10 +1,10 @@
-import type { APIContext, APIRoute } from "astro";
+import type { APIRoute } from "astro";
 
 import { z } from "astro/zod";
 import { addDays } from "date-fns";
 import { createDB } from "db";
 import { payments, subscriptions } from "db/schema";
-import { and, eq, gt } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 import type {
   NowPaymentCreatePaymentResponse,
@@ -46,6 +46,7 @@ export const POST: APIRoute = async (c) => {
   const selectedPlan = plans.find((p) => p.id === data.plan)!;
   const db = createDB(c.locals.runtime.env.DB);
   let payment;
+  const uuid = crypto.randomUUID();
   try {
     if (data.plan === "trial") {
       const alreadyTrial = !!(await db
@@ -59,7 +60,7 @@ export const POST: APIRoute = async (c) => {
         throw new RuntimeError("Trial has already been used for this domain");
       }
       payment = {
-        payment_id: `trial-${crypto.randomUUID()}`,
+        payment_id: `trial-${uuid}`,
         payment_status: "finished",
         expiration_estimate_date: new Date(
           Date.now() + 7 * 24 * 60 * 60 * 1000
@@ -74,18 +75,21 @@ export const POST: APIRoute = async (c) => {
       ) {
         throw new Error("Selected network is not valid");
       }
-      payment = await createPayment(selectedPlan.cost, data.currency!);
+      payment = await createPayment(selectedPlan.cost, data.currency!, uuid);
     }
-
     const record = await db
       .insert(payments)
       .values({
+        uuid,
         domain: data.domain,
-        paymentStatus: payment.payment_status,
         paymentId: payment.payment_id,
-        paymentInfo: payment as NowPaymentCreatePaymentResponse,
+        paymentInfo: {
+          ...(payment as NowPaymentCreatePaymentResponse),
+          updates: [],
+        },
         paymentExpiry: new Date(payment.expiration_estimate_date),
         expiresAt: addDays(new Date(), selectedPlan.days),
+        planInfo: selectedPlan,
         isTrial: data.plan === "trial",
       })
       .returning();
@@ -94,6 +98,7 @@ export const POST: APIRoute = async (c) => {
       await db.insert(subscriptions).values({
         domain: data.domain,
         expiresAt: addDays(new Date(), selectedPlan.days),
+        paymentId: record[0].id,
       });
     }
 

@@ -1,5 +1,7 @@
+import { relations } from "drizzle-orm";
 import { integer, sqliteTable, text, index } from "drizzle-orm/sqlite-core";
 
+import type { plans } from "@/plans";
 import type { NowPaymentCreatePaymentResponse } from "@/types";
 
 export const payments = sqliteTable(
@@ -11,11 +13,15 @@ export const payments = sqliteTable(
       .unique()
       .$default(() => crypto.randomUUID()),
     domain: text().notNull(),
-    paymentStatus: text().notNull(),
     paymentId: text().notNull().unique(),
     paymentInfo: text({ mode: "json" })
-      .$type<NowPaymentCreatePaymentResponse>()
+      .$type<
+        NowPaymentCreatePaymentResponse & {
+          updates: any[];
+        }
+      >()
       .notNull(),
+    planInfo: text({ mode: "json" }).$type<(typeof plans)[number]>().notNull(),
     isTrial: integer({ mode: "boolean" }).notNull(),
     paymentExpiry: integer({ mode: "timestamp" }).notNull(),
     expiresAt: integer({ mode: "timestamp" }).notNull(),
@@ -28,10 +34,13 @@ export const payments = sqliteTable(
   },
   (table) => [
     index("index_domain").on(table.domain),
-    index("index_paymentStatus").on(table.paymentStatus),
     index("index_paymentId").on(table.paymentId),
   ]
 );
+
+export const paymentsRelations = relations(payments, ({ one }) => ({
+  subscription: one(subscriptions),
+}));
 
 export const subscriptions = sqliteTable(
   "subscriptions",
@@ -41,6 +50,9 @@ export const subscriptions = sqliteTable(
       .unique()
       .$default(() => crypto.randomUUID()),
     domain: text().notNull(),
+    paymentId: integer()
+      .notNull()
+      .references(() => payments.id),
     expiresAt: integer({ mode: "timestamp" }).notNull(),
     createdAt: integer({ mode: "timestamp" })
       .notNull()
@@ -51,3 +63,7 @@ export const subscriptions = sqliteTable(
   },
   (table) => [index("name").on(table.domain)]
 );
+
+export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
+  payment: one(payments),
+}));

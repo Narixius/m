@@ -35,6 +35,7 @@ const schema = z
         message: "The URL pattern doesn't seem to be fine",
       }),
     currency: z.string().optional(),
+    currencyData: z.any(),
   })
   .superRefine((data, ctx) => {
     if (data.plan !== "trial") {
@@ -60,6 +61,7 @@ export const CheckoutForm: FC<{
       domain: "",
       plan: "",
       currency: "",
+      currencyData: null,
     },
     resolver: zodResolver(schema),
   });
@@ -161,7 +163,10 @@ export const CheckoutForm: FC<{
               return (
                 <CurrenciesList
                   currencies={currencies}
-                  onChange={field.onChange}
+                  onChange={(value, item) => {
+                    field.onChange(value);
+                    form.setValue("currencyData", item);
+                  }}
                 />
               );
             }}
@@ -210,9 +215,19 @@ export const CheckoutForm: FC<{
             {form.getValues("currency") && (
               <div className="flex items-center justify-between">
                 Currency{" "}
-                <span className="font-medium">
-                  {form.getValues("currency")}
-                </span>
+                <div className="font-medium flex items-center gap-1">
+                  <img
+                    src={
+                      `https://nowpayments.io` +
+                      form.getValues("currencyData").logo_url
+                    }
+                    className="size-4"
+                  />
+                  {form.getValues("currencyData").name}
+                  <span className="text-muted-foreground">
+                    ({form.getValues("currencyData").code})
+                  </span>
+                </div>
               </div>
             )}
           </div>

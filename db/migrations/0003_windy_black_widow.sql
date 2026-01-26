@@ -1,0 +1,1 @@
+ALTER TABLE `subscriptions` ADD `paymentId` integer NOT NULL REFERENCES payments(id);

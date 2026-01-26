@@ -1,7 +1,6 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-// @ts-check
 import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
@@ -23,9 +22,20 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      NOW_PAYMENT_API_URL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SUPPORT_URL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
   },
   vite: {
+    server: {
+      allowedHosts: ["np.xrouter.shop"],
+    },
     ssr: {
       external: [
         "node:buffer",

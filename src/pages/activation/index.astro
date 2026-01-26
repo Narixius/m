@@ -1,29 +1,31 @@
 ---
 import BorderedLayout from "@/layouts/BorderedLayout.astro";
-import currencies from "../currencies.json";
+// import currencies from "../../currencies.json";
 import { type NowPaymentCurrency } from "@/types";
 import { Logo } from "@/components/Logo";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer.astro";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { FAQ } from "@/components/FAQ";
+import { GET } from "@/pages/api/get-currencies";
 
 const { pathname } = Astro.url;
-const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
+// const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
 
-// const currenciesRes = await GET(Astro);
-// const npCurrencies = (await currenciesRes.json()) as {
-//   currencies: NowPaymentCurrency[];
-// };
+const currenciesRes = await GET(Astro);
+const npCurrencies = (await currenciesRes.json()) as {
+  currencies: NowPaymentCurrency[];
+};
 ---
 
 <title>Marz | Activation & Checkout</title>
 <BorderedLayout>
-  <div class="px-6 flex gap-2 items-center border-b p-5 backdrop-blur-lg">
+  <div class="px-6 flex gap-2 items-center border-b p-5">
     <Logo />
     <Navbar currentPathname={pathname} />
     <a href="/#pricing" class="hidden md:flex">
-      <Button>Get Started</Button>
+      <Button>Join Now</Button>
     </a>
   </div>
 
@@ -47,5 +49,7 @@ const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
     </div>
   </main>
 
+  <hr class="pb-16" />
+  <FAQ client:visible />
   <Footer />
 </BorderedLayout>
