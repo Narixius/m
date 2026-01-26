@@ -20,6 +20,7 @@ export const ActivationInfo: FC<{
   invoiceId: string;
 }> = ({ qrCode, initialPaymentData, invoiceId }) => {
   const [p, setPayment] = useState(initialPaymentData);
+
   useEffect(() => {
     if (["processing", "waiting"].includes(p.paymentStatus)) {
       const interval = setInterval(() => {
@@ -31,7 +32,7 @@ export const ActivationInfo: FC<{
       }, 10_000);
       return () => clearInterval(interval);
     }
-  }, []);
+  }, [p.paymentStatus]);
 
   return (
     <div className="flex items-center justify-center pb-20 border-t pt-5 md:pt-10">
