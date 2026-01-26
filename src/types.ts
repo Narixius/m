@@ -1,3 +1,5 @@
+import type { payments } from "db/schema";
+
 export type NowPaymentCurrency = {
   id: number;
   code: string;
@@ -28,3 +30,31 @@ export type NowPaymentCreatePaymentResponse = {
   expiration_estimate_date: string;
   valid_until: string;
 };
+
+
+export type PaymentStatus =
+  | "waiting"
+  | "processing"
+  | "partially_paid"
+  | "finished"
+  | "failed"
+  | "expired";
+
+type Payment = typeof payments.$inferInsert
+export type GetPaymentResponse = {
+  invoiceId: string,
+  paymentStatus: PaymentStatus,
+  plan: Payment['planInfo'],
+  isTrial: boolean,
+  payCurrency:string,
+  payAmount:number,
+  payAddress: string,
+  network: string,
+  paymentExpiry: string,
+  subscription: {
+    uuid: string,
+  },
+  lastUpdate: {
+    actually_paid?: number,
+  },
+}

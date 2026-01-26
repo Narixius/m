@@ -26,8 +26,8 @@ export default defineConfig({
         access: "secret",
       }),
       SUPPORT_URL: envField.string({
-        context: "server",
-        access: "secret",
+        context: "client",
+        access: "public",
       }),
     },
   },
