@@ -1,10 +1,5 @@
-declare global {
-  namespace App {
-    interface Locals {
-      runtime: {
-        env: Env;
-      };
-    }
-  }
+type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
+
+declare namespace App {
+  interface Locals extends Runtime { }
 }
-export {};
