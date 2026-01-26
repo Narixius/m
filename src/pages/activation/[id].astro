@@ -19,8 +19,9 @@ import { SUPPORT_URL } from "astro:env/server";
 import { FAQ } from "@/components/FAQ";
 import type { subscriptions } from "db/schema";
 
-const { pathname } = Astro.url;
 export const prerender = false;
+
+const { pathname } = Astro.url;
 
 const paymentReq = await GET(Astro);
 

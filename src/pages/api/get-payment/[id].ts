@@ -4,6 +4,8 @@ import { createDB } from "db";
 import { payments, subscriptions } from "db/schema";
 import { eq, getTableColumns } from "drizzle-orm";
 
+export const prerender = false;
+
 export const GET: APIRoute = async (c) => {
   const db = createDB(c.locals.runtime.env.DB);
 
