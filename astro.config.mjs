@@ -7,12 +7,7 @@ import { defineConfig, envField } from "astro/config";
 export default defineConfig({
   integrations: [react()],
   output: "server",
-  adapter: cloudflare({
-    imageService: "cloudflare",
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+  adapter: cloudflare(),
   env: {
     schema: {
       NOW_PAYMENT_API_KEY: envField.string({
