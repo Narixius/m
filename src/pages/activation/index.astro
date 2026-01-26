@@ -8,14 +8,14 @@ import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer.astro";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { FAQ } from "@/components/FAQ";
-import { GET } from "@/pages/api/get-currencies";
+import { getCurrencies } from "@/lib/now-payment";
 
 export const prerender = false;
 
 const { pathname } = Astro.url;
 // const npCurrencies = { currencies: currencies as NowPaymentCurrency[] };
 
-const currenciesRes = await GET(Astro);
+const currenciesRes = await getCurrencies();
 const npCurrencies = (await currenciesRes.json()) as {
   currencies: NowPaymentCurrency[];
 };
