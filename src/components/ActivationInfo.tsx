@@ -1,15 +1,18 @@
-import { useEffect, useState, type FC } from "react";
-import { Button } from "@/components/ui/button";
-import { CopyButton } from "@/components/CopyButton";
-import { Badge } from "@/components/ui/badge";
-import { ArrowLeftIcon, HeadsetIcon } from "lucide-react";
-import { Timer } from "@/components/Timer";
-import { differenceInSeconds, formatDistanceToNow } from "date-fns";
-import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
-import { startCase } from "es-toolkit";
+
 import { SUPPORT_URL } from "astro:env/client";
+import { differenceInSeconds, formatDistanceToNow } from "date-fns";
+import { startCase } from "es-toolkit";
+import { ArrowLeftIcon, HeadsetIcon } from "lucide-react";
+import { useEffect, useState, type FC } from "react";
+
 import type { GetPaymentResponse } from "@/types";
+
+import { CopyButton } from "@/components/CopyButton";
+import { Timer } from "@/components/Timer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const ActivationInfo: FC<{
   qrCode: string;
@@ -134,7 +137,7 @@ export const ActivationInfo: FC<{
         {p.paymentStatus === "waiting" && (
           <div className="mt-4 w-full flex flex-col gap-4">
             <p className="text-sm text-center">
-              Send the exact amount to the address above with the exact network
+              Send the exact amount to the address above on the exact network
               before the timer expires. Please ensure your transaction completes
               within the expiration window, or your payment will be canceled and
               funds may be lost. If you encounter any issues, contact our
