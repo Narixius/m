@@ -83,6 +83,7 @@ export const CheckoutForm: FC<{
     setLoading(true);
     data.domain = await sha256(data.domain.toLowerCase().trim());
     if (data.plan === "trial") delete data.currency;
+    delete data.currencyData;
 
     fetch("/api/create-payment", {
       method: "post",
