@@ -126,7 +126,7 @@ export const POST: APIRoute = async (c) => {
         }
       );
     }
-    if (import.meta.env.DEV) console.error(e);
+    console.error(e);
     return new Response(
       JSON.stringify({
         message: "Something went wrong, please try again later.",
