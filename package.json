@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "pnpm db:migrate && pnpm astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "deploy": "pnpm db:migrate --remote && pnpm wrangler deploy",
     "astro": "astro",
